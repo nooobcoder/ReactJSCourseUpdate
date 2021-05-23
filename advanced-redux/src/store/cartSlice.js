@@ -1,12 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { showNotification } from "./uiSlice";
 
-const initialState = { items: [], totalQuantity: 0 };
+const initialState = { items: [], totalQuantity: 0, itemStore: [] };
 
 const cartSlice = createSlice({
 	name: "cart",
 	initialState,
 	reducers: {
+		setItemStore(prevState, action) {
+			prevState.itemStore = action.payload;
+		},
+		replaceCart(prevState, action) {
+			prevState.totalQuantity = action.payload.totalQuantity;
+			prevState.items = action.payload.items;
+		},
 		removeItemFromCart(prevState, action) {
 			const id = action.payload;
 			const existingItem = prevState.items.find((item) => item.id === id);
@@ -43,44 +49,6 @@ const cartSlice = createSlice({
 	},
 });
 
-export const sendCartData = (cartState) => {
-	return async (dispatch) => {
-		// Send HTTP request
-		const endpoint = process.env.REACT_APP_API_ENDPOINT;
-		try {
-			dispatch(
-				showNotification({
-					status: "pending",
-					title: "Sending",
-					message: "Sending cart data!",
-				})
-			);
-
-			const response = await fetch(`${endpoint}/cart.json`, {
-				method: "PUT",
-				body: JSON.stringify(cartState),
-			});
-
-			if (!response.ok) throw new Error("Sending cart data failed");
-
-			dispatch(
-				showNotification({
-					status: "success",
-					title: "Success",
-					message: "Sent cart data successfully!",
-				})
-			);
-		} catch (error) {
-			dispatch(
-				showNotification({
-					status: "error",
-					title: "Error!",
-					message: "Sending cart data failed!",
-				})
-			);
-		}
-	};
-};
-
-export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, replaceCart, setItemStore } =
+	cartSlice.actions;
 export default cartSlice;
