@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+
+html {
+	background: repeating-linear-gradient(
+		45deg,
+		#ffff,
+		#ffff 10px,
+		salmon 10px,
+		salmon 20px
+	);
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	font-family: Roboto, sans-serif;
+	box-sizing: inherit;
+	border-radius: 5px;
+}
+
+html,
+body,
+#root {
+	height: 100%;
+}
