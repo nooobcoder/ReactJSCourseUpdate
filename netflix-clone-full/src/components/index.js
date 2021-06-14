@@ -1,3 +1,4 @@
-import { Jumbotron } from "./jumbotron";
+import Jumbotron from "./jumbotron";
+import Footer from "./footer";
 
-export { Jumbotron };
+export { Jumbotron, Footer };

@@ -34,4 +34,4 @@ Jumbotron.Image = ({ ...restProps }) => {
 	return <Image {...restProps} />;
 };
 
-export { Jumbotron };
+export default Jumbotron;
