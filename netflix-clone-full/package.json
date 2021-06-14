@@ -7,6 +7,7 @@
 		"fuse.js": "^6.4.6",
 		"normalize.css": "^8.0.1",
 		"react": "^18.0.0-alpha-01be61c12",
+		"react-animated-cursor": "^2.1.8",
 		"react-dom": "^18.0.0-alpha-01be61c12",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.3",
