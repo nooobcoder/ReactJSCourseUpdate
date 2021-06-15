@@ -7,8 +7,8 @@ import { GlobalStyles } from "./globalStyles";
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(
-	<Fragment>
-		<GlobalStyles />
-		<App />
-	</Fragment>
+		<Fragment>
+			<GlobalStyles />
+			<App />
+		</Fragment>
 );

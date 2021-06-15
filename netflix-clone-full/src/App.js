@@ -1,13 +1,12 @@
-import { Fragment } from "react";
-import FaqsContainer from "./containers/faqs";
-import FooterContainer from "./containers/FooterContainer";
-import JumbotronContainer from "./containers/JumbotronContainer";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import AnimatedCursor from "react-animated-cursor";
-import { OptForm } from "./components";
+import * as ROUTES from "./constants/routes";
+import { Browse, Home, Signin, Signup } from "./pages";
 
 const App = () => {
 	return (
-		<Fragment>
+		<Router>
 			<AnimatedCursor
 				innerSize={8}
 				outerSize={9}
@@ -16,11 +15,21 @@ const App = () => {
 				innerScale={0.7}
 				outerScale={4}
 			/>
-			<JumbotronContainer />
-			<FaqsContainer />
-			<OptForm />
-			<FooterContainer />
-		</Fragment>
+			<Switch>
+				<Route exact path={ROUTES.BROWSE}>
+					<Browse />
+				</Route>
+				<Route exact path={ROUTES.SIGN_IN}>
+					<Signin />
+				</Route>
+				<Route exact path={ROUTES.SIGN_UP}>
+					<Signup />
+				</Route>
+				<Route exact path={ROUTES.HOME}>
+					<Home />
+				</Route>
+			</Switch>
+		</Router>
 	);
 };
 
