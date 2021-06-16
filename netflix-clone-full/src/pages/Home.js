@@ -1,9 +1,17 @@
-import { Fragment } from "react";
+import React, { Fragment, Suspense } from "react";
 import HeaderContainer from "../containers/HeaderContainer";
-import FaqsContainer from "../containers/faqs";
-import FooterContainer from "../containers/FooterContainer";
-import JumbotronContainer from "../containers/JumbotronContainer";
-import { OptForm, Feature } from "../components";
+// import FaqsContainer from "../containers/faqs";
+// import FooterContainer from "../containers/FooterContainer";
+// import JumbotronContainer from "../containers/JumbotronContainer";
+import { OptForm, Feature, Spinner } from "../components";
+
+const JumbotronContainer = React.lazy(() =>
+  import("../containers/JumbotronContainer")
+);
+const FaqsContainer = React.lazy(() => import("../containers/faqs"));
+const FooterContainer = React.lazy(() =>
+  import("../containers/FooterContainer")
+);
 
 const Home = () => {
   return (
@@ -27,9 +35,11 @@ const Home = () => {
         </Feature>
       </HeaderContainer>
 
-      <JumbotronContainer />
-      <FaqsContainer />
-      <FooterContainer />
+      <Suspense fallback={<Spinner />}>
+        <JumbotronContainer />
+        <FaqsContainer />
+        <FooterContainer />
+      </Suspense>
     </Fragment>
   );
 };

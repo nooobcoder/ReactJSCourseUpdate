@@ -1,14 +1,18 @@
-import React, { Fragment, useState, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Form } from "../components";
-
+import { Form, Spinner } from "../components";
+import { BROWSE } from "../constants/routes";
 import FooterContainer from "../containers/FooterContainer";
 import HeaderContainer from "../containers/HeaderContainer";
+import { setAuthState, toggleLoading } from "../context/appSlice";
 import { FirebaseContext } from "../context/firebaseContext";
-import { BROWSE } from "../constants/routes";
 
 const Signin = () => {
   const history = useHistory();
+  const globalAppState = useSelector((state) => state.app);
+  const stateDispatch = useDispatch();
+
   const { firebaseConnection } = useContext(FirebaseContext);
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
@@ -24,7 +28,7 @@ const Signin = () => {
 
   const handleSignIn = async (event) => {
     event.preventDefault(); //Prevents form submission
-
+    stateDispatch(toggleLoading());
     console.log("FORM INVALID? ", isInvalid);
     !checkValidEmail() && (isInvalid = true);
     isInvalid && setError("Invalid Email Address");
@@ -39,18 +43,24 @@ const Signin = () => {
 
       // Success, redirect user to browse page
       console.log(authTask);
+      stateDispatch(setAuthState(authTask));
+
       history.push(BROWSE);
     } catch (error) {
+      stateDispatch(toggleLoading());
+
       setEmailAddress("");
       setPassword("");
       setError(error.message);
     }
   };
 
-  const FormContent = (
+  const FormContent = globalAppState.loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <Form.Title>Sign In</Form.Title>
-      {error && <Form.Error>{error}</Form.Error>};
+      {error && <Form.Error>{error}</Form.Error>}
       <Form.Base onSubmit={(e) => handleSignIn(e)} method="POST">
         <Form.Input
           placeholder="Email address"
