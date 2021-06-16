@@ -9886,14 +9886,14 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@*", "react-dom@^16.13.1", "react-dom@^17.0.2", "react-dom@>= 16.8.0":
-  "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
-  "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
-  "version" "17.0.2"
+"react-dom@*", "react-dom@^16.13.1", "react-dom@^18.0.0-alpha-a0d2d1e1e", "react-dom@>= 16.8.0":
+  "integrity" "sha512-neLPyFjmMVGmo8eQ1jSnK/wUEz1PAjYWNk6ZstJwkPYxXpqB4hNq2RvMKYvm0NlXbp/ySsWVcqSFgZIssMBS2g=="
+  "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.0.0-alpha-a0d2d1e1e.tgz"
+  "version" "18.0.0-alpha-a0d2d1e1e"
   dependencies:
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
-    "scheduler" "^0.20.2"
+    "scheduler" "0.21.0-alpha-a0d2d1e1e"
 
 "react-error-overlay@^6.0.9":
   "integrity" "sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew=="
@@ -10022,10 +10022,10 @@
   optionalDependencies:
     "fsevents" "^2.1.3"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.13.1", "react@^16.14.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 16", "react@>= 16.8.0", "react@>=15", "react@17.0.2":
-  "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
-  "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
-  "version" "17.0.2"
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.13.1", "react@^16.14.0 || ^17.0.0", "react@^16.8.3 || ^17", "react@^18.0.0-alpha-a0d2d1e1e", "react@>= 16", "react@>= 16.8.0", "react@>=15", "react@18.0.0-alpha-a0d2d1e1e":
+  "integrity" "sha512-d+1Y1QkJj43Vynhb7cnVUEcSYyicEDDfOVEjA6e5N+EWgD9/9aoSljzcxYkiYmx1BlOcz3ax0JIAo2RprrjkHA=="
+  "resolved" "https://registry.npmjs.org/react/-/react-18.0.0-alpha-a0d2d1e1e.tgz"
+  "version" "18.0.0-alpha-a0d2d1e1e"
   dependencies:
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"
@@ -10595,10 +10595,10 @@
   dependencies:
     "xmlchars" "^2.2.0"
 
-"scheduler@^0.20.2":
-  "integrity" "sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ=="
-  "resolved" "https://registry.npmjs.org/scheduler/-/scheduler-0.20.2.tgz"
-  "version" "0.20.2"
+"scheduler@0.21.0-alpha-a0d2d1e1e":
+  "integrity" "sha512-cH9lAjK1OKyCd6SGV9wk0XrcvrvfUS2Hc9lPjJf5Rjsto28zV+43X2efpDCX4BDUN0Y/1wAoULdsyz+fdaIUnA=="
+  "resolved" "https://registry.npmjs.org/scheduler/-/scheduler-0.21.0-alpha-a0d2d1e1e.tgz"
+  "version" "0.21.0-alpha-a0d2d1e1e"
   dependencies:
     "loose-envify" "^1.1.0"
     "object-assign" "^4.1.1"

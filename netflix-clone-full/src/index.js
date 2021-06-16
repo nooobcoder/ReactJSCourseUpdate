@@ -9,7 +9,8 @@ import { FirebaseContext } from "./context/firebaseContext";
 import store from "./context";
 
 const container = document.getElementById("root");
-ReactDOM.render(
+const root = ReactDOM.createRoot(container);
+root.render(
   <Fragment>
     {/* FirebaseContext is a custom provider that provides access to the firebase object globally in the app */}
     <FirebaseContext.Provider value={{ firebaseConnection }}>

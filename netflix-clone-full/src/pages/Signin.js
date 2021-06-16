@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Form, Spinner } from "../components";
@@ -25,6 +25,10 @@ const Signin = () => {
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(emailAddress).toLowerCase());
   };
+
+  useEffect(() => {
+    globalAppState.loading && stateDispatch(toggleLoading());
+  }, []); // !Do not add any dependencies here.
 
   const handleSignIn = async (event) => {
     event.preventDefault(); //Prevents form submission
@@ -85,7 +89,16 @@ const Signin = () => {
   return (
     <Fragment>
       <HeaderContainer>
-        <Form>{FormContent}</Form>
+        <Form>
+          {FormContent}
+          <Form.Text>
+            New to Netflix? <Form.Link to="/signup">Sign up now.</Form.Link>
+          </Form.Text>
+          <Form.TextSmall>
+            This page is protected by Google reCAPTCHA to ensure you're not a
+            bot. Learn more.
+          </Form.TextSmall>
+        </Form>
       </HeaderContainer>
       <FooterContainer />
     </Fragment>
