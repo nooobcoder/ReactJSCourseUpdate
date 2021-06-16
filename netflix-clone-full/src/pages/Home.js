@@ -10,9 +10,8 @@ const Home = () => {
     <Fragment>
       <HeaderContainer>
         <Feature>
-          <Feature.Title>
-            Unlimited films, TV programmes and more.
-          </Feature.Title>
+          <Feature.SubTitle>{"Welcome back, Konstantinos!"}</Feature.SubTitle>
+          <Feature.Title>Unlimited movies, TV shows and more.</Feature.Title>
           <Feature.SubTitle>
             Watch anywhere. Cancel at any time.
           </Feature.SubTitle>

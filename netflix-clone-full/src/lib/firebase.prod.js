@@ -17,5 +17,4 @@ const firebase = Firebase.initializeApp(config);
 
 // !WARN: Seed the database only when it is empty, for first time set-up.
 // seedDatabase(firebase);
-
 export { firebase as firebaseConnection };

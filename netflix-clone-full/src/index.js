@@ -7,13 +7,13 @@ import { firebaseConnection } from "./lib/firebase.prod";
 import { FirebaseContext } from "./context/firebaseContext";
 
 const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
-console.log("Hi");
-root.render(
+ReactDOM.render(
   <Fragment>
-    <FirebaseContext.Provider value={firebaseConnection}>
+    {/* FirebaseContext is a custom provider that provides access to the firebase object globally in the app */}
+    <FirebaseContext.Provider value={{ firebaseConnection }}>
       <GlobalStyles />
       <App />
     </FirebaseContext.Provider>
-  </Fragment>
+  </Fragment>,
+  container
 );
