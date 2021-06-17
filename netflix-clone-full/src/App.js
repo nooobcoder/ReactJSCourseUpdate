@@ -1,15 +1,36 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useEffect } from "react";
 import * as ROUTES from "./constants/routes";
 import { Browse, Home, Signin, Signup } from "./pages";
 import {
   IsUserRedirect,
   ProtectedRoute,
 } from "./helpers/routeRedirectorMiddleware";
-import { useSelector } from "react-redux";
+import { setAuthState } from "./context/appSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { firebaseConnection } from "./lib/firebase.prod";
 
 const App = () => {
-  const { firebaseAuthState } = useSelector(({ app }) => app);
-  console.log(firebaseAuthState);
+  const { firebaseAuthState, isAuthenticated } = useSelector(({ app }) => app);
+  const appStateDispatch = useDispatch();
+  console.log("Is Authenticated? ", isAuthenticated);
+
+  useEffect(() => {
+    const getLoggedInUser = async () => {
+      firebaseConnection.auth().onAuthStateChanged((user) => {
+        if (user) {
+          appStateDispatch(setAuthState(user));
+        } else {
+          setAuthState({
+            firebaseAuthState: undefined,
+            isAuthenticated: undefined,
+          });
+        }
+      });
+    };
+    getLoggedInUser();
+  }, [appStateDispatch]);
+
   return (
     <Router>
       <Switch>
@@ -35,7 +56,7 @@ const App = () => {
         <ProtectedRoute user={firebaseAuthState} redirectPath={ROUTES.BROWSE}>
           <Browse />
         </ProtectedRoute>
-        
+
         <IsUserRedirect
           user={firebaseAuthState}
           redirectPath={ROUTES.BROWSE}

@@ -4,6 +4,8 @@ import HeaderContainer from "../containers/HeaderContainer";
 // import FooterContainer from "../containers/FooterContainer";
 // import JumbotronContainer from "../containers/JumbotronContainer";
 import { OptForm, Feature, Spinner } from "../components";
+import { useSelector } from "react-redux";
+import generateName from "../helpers/randomNameGenerator";
 
 const JumbotronContainer = React.lazy(() =>
   import("../containers/JumbotronContainer")
@@ -14,11 +16,17 @@ const FooterContainer = React.lazy(() =>
 );
 
 const Home = () => {
+  const { isAuthenticated, firebaseAuthState } = useSelector(({ app }) => app);
+  const userDisplayName = firebaseAuthState?.displayName
+    ? firebaseAuthState.displayName
+    : generateName();
   return (
     <Fragment>
       <HeaderContainer>
         <Feature>
-          <Feature.SubTitle>{"Welcome back, Konstantinos!"}</Feature.SubTitle>
+          <Feature.SubTitle>{`Welcome ${
+            isAuthenticated ? "back" : ""
+          }, ${userDisplayName}!`}</Feature.SubTitle>
           <Feature.Title>Unlimited movies, TV shows and more.</Feature.Title>
           <Feature.SubTitle>
             Watch anywhere. Cancel at any time.

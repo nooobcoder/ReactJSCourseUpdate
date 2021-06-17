@@ -14,7 +14,6 @@ const appSlice = createSlice({
       return { ...prevState, loading: !prevState.loading };
     },
     setAuthState(prevState, { payload }) {
-      console.log(payload);
       return {
         loading: false,
         isAuthenticated: true,
