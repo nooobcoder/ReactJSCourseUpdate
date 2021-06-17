@@ -49,6 +49,7 @@ const App = () => {
           user={firebaseAuthState}
           redirectPath={ROUTES.BROWSE}
           path={ROUTES.SIGN_UP}
+          exact
         >
           <Signup />
         </IsUserRedirect>
