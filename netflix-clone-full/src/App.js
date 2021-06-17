@@ -31,9 +31,11 @@ const App = () => {
         >
           <Signup />
         </IsUserRedirect>
+
         <ProtectedRoute user={firebaseAuthState} redirectPath={ROUTES.BROWSE}>
           <Browse />
         </ProtectedRoute>
+        
         <IsUserRedirect
           user={firebaseAuthState}
           redirectPath={ROUTES.BROWSE}
