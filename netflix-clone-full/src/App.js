@@ -13,7 +13,7 @@ import { firebaseConnection } from "./lib/firebase.prod";
 const App = () => {
   const { firebaseAuthState, isAuthenticated } = useSelector(({ app }) => app);
   const appStateDispatch = useDispatch();
-  console.log("Is Authenticated? ", isAuthenticated);
+  // console.log("Is Authenticated? ", isAuthenticated);
 
   useEffect(() => {
     const getLoggedInUser = async () => {
