@@ -1,3 +1,4 @@
 import FirebaseAuthStateListener from "./firebaseAuthListener";
+import GetFirebaseWatchContent from "./getFirebaseWatchContent";
 
-export { FirebaseAuthStateListener };
+export { FirebaseAuthStateListener, GetFirebaseWatchContent };

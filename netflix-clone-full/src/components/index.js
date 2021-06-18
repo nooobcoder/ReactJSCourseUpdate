@@ -6,7 +6,7 @@ import Header from "./header";
 import Feature from "./feature";
 import Form from "./form";
 import Spinner from "./spinner/Spinner";
-
+import Profiles from "./profiles";
 export {
   Accordion,
   Feature,
@@ -16,4 +16,5 @@ export {
   Spinner,
   Jumbotron,
   OptForm,
+  Profiles,
 };

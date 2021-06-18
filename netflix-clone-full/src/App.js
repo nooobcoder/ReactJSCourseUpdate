@@ -1,19 +1,17 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useEffect } from "react";
 import * as ROUTES from "./constants/routes";
 import {
   IsUserRedirect,
   ProtectedRoute,
 } from "./helpers/routeRedirectorMiddleware";
-import { Browse, Home, Signin, Signup } from "./pages";
 import { FirebaseAuthStateListener } from "./hooks";
+import { Browse, Home, Signin, Signup } from "./pages";
 
 const App = () => {
+  FirebaseAuthStateListener();
   const { firebaseAuthState } = useSelector(({ app }) => app);
   // console.log("Is Authenticated? ", isAuthenticated);
-  FirebaseAuthStateListener();
-
   return (
     <Router>
       <Switch>
