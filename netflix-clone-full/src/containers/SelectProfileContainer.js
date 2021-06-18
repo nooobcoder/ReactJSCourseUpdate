@@ -8,6 +8,7 @@ import { Profiles } from "../components";
 const SelectProfileContainer = ({ user, setProfile }) => {
   const { firebaseAuthState } = useSelector(({ app }) => app);
   const { displayName, photoURL, email } = firebaseAuthState;
+  console.log(firebaseAuthState.displayName);
   return (
     <Fragment>
       <Header bg={false}>

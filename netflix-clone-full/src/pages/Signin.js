@@ -46,8 +46,8 @@ const Signin = () => {
         .signInWithEmailAndPassword(emailAddress, password);
 
       // Success, redirect user to browse page
-      console.log(authTask);
-      stateDispatch(setAuthState(authTask));
+      // console.log(authTask);
+      stateDispatch(setAuthState(authTask.user));
 
       history.push(BROWSE);
     } catch (error) {

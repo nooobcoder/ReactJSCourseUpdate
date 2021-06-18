@@ -68,7 +68,7 @@ const Signup = () => {
         photoURL: Math.floor(Math.random() * (5 - 1 + 1) + 1),
       });
       stateDispatch(toggleLoading());
-      stateDispatch(setAuthState(authTask));
+      stateDispatch(setAuthState(authTask.user));
       history.push(BROWSE);
     } catch (error) {
       stateDispatch(toggleLoading());

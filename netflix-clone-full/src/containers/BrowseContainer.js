@@ -5,8 +5,10 @@ import { setCurrentProfile, setLoading } from "../context/appSlice";
 import SelectProfileContainer from "./SelectProfileContainer";
 
 const BrowseContainer = ({ genres }) => {
-  const { currentUserProfile, loading } = useSelector(({ app }) => app);
-
+  const { firebaseAuthState, currentUserProfile, loading } = useSelector(
+    ({ app }) => app
+  );
+  const { displayName, photoURL, email } = firebaseAuthState;
   const actionDispatcher = useDispatch();
   const setcurrentProfile = (user) => {
     actionDispatcher(setCurrentProfile(user));
@@ -19,7 +21,7 @@ const BrowseContainer = ({ genres }) => {
     }, 3000);
 
     return () => clearTimeout(time); // cleaner function
-  }, [currentUserProfile]);
+  }, [currentUserProfile, actionDispatcher]);
 
   return currentUserProfile?.displayName ? (
     <Fragment>
