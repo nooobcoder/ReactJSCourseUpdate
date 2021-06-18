@@ -19,7 +19,7 @@ const SelectProfileContainer = ({ user, setProfile }) => {
       <Profiles>
         <Profiles.Title>Who's Watching</Profiles.Title>
         <Profiles.List>
-          <Profiles.User onClick={() => {}}>
+          <Profiles.User onClick={() => setProfile({ displayName, photoURL })}>
             <Profiles.Picture src={photoURL} />
             <Profiles.Name>
               {displayName} {email}

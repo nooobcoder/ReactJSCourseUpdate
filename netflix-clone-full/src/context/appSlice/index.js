@@ -13,6 +13,10 @@ const appSlice = createSlice({
     toggleLoading(prevState) {
       return { ...prevState, loading: !prevState.loading };
     },
+    setLoading(prevState, { payload }) {
+      console.log(payload);
+      return { ...prevState, loading: payload };
+    },
     setAuthState(prevState, { payload }) {
       return {
         loading: false,
@@ -20,8 +24,12 @@ const appSlice = createSlice({
         firebaseAuthState: payload,
       };
     },
+    setCurrentProfile: (prevState, { payload }) => {
+      return { ...prevState, currentUserProfile: { ...payload } };
+    },
   },
 });
 
-export const { toggleLoading, setAuthState } = appSlice.actions;
+export const { toggleLoading, setAuthState, setLoading, setCurrentProfile } =
+  appSlice.actions;
 export default appSlice;
