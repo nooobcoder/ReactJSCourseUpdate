@@ -7,6 +7,7 @@ import Feature from "./feature";
 import Form from "./form";
 import Spinner from "./spinner/Spinner";
 import Profiles from "./profiles";
+import Loading from "./loading";
 export {
   Accordion,
   Feature,
@@ -14,6 +15,7 @@ export {
   Form,
   Header,
   Spinner,
+  Loading,
   Jumbotron,
   OptForm,
   Profiles,

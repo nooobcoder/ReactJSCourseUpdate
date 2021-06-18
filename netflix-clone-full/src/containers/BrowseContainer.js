@@ -2,6 +2,7 @@ import SelectProfileContainer from "./SelectProfileContainer";
 import { useState, useEffect, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setCurrentProfile, setLoading } from "../context/appSlice";
+import { Loading } from "../components";
 
 const BrowseContainer = ({ genres }) => {
   const { currentUserProfile, loading } = useSelector(({ app }) => app);
@@ -20,6 +21,12 @@ const BrowseContainer = ({ genres }) => {
 
   return (
     <Fragment>
+      {loading ? (
+        <Loading src={currentUserProfile.photoURL} />
+      ) : (
+        <Loading.ReleaseBody />
+      )}
+
       <SelectProfileContainer setProfile={(user) => setcurrentProfile(user)} />
     </Fragment>
   );
