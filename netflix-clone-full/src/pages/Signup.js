@@ -65,7 +65,7 @@ const Signup = () => {
 
       await authTask.user.updateProfile({
         displayName: firstName,
-        photoURL: Math.floor(Math.random() * 5) + 1,
+        photoURL: Math.floor(Math.random() * (5 - 1 + 1) + 1),
       });
       stateDispatch(toggleLoading());
       stateDispatch(setAuthState(authTask));

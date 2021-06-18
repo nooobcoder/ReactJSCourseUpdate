@@ -1,8 +1,8 @@
-import SelectProfileContainer from "./SelectProfileContainer";
-import { useState, useEffect, Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { setCurrentProfile, setLoading } from "../context/appSlice";
+import { Fragment, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Loading } from "../components";
+import { setCurrentProfile, setLoading } from "../context/appSlice";
+import SelectProfileContainer from "./SelectProfileContainer";
 
 const BrowseContainer = ({ genres }) => {
   const { currentUserProfile, loading } = useSelector(({ app }) => app);
@@ -14,21 +14,23 @@ const BrowseContainer = ({ genres }) => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
+    const time = setTimeout(() => {
       actionDispatcher(setLoading(false));
     }, 3000);
+
+    return () => clearTimeout(time); // cleaner function
   }, [currentUserProfile]);
 
-  return (
+  return currentUserProfile?.displayName ? (
     <Fragment>
       {loading ? (
         <Loading src={currentUserProfile.photoURL} />
       ) : (
         <Loading.ReleaseBody />
       )}
-
-      <SelectProfileContainer setProfile={(user) => setcurrentProfile(user)} />
     </Fragment>
+  ) : (
+    <SelectProfileContainer setProfile={(user) => setcurrentProfile(user)} />
   );
 };
 

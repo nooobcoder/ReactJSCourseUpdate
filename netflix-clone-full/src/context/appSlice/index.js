@@ -14,7 +14,6 @@ const appSlice = createSlice({
       return { ...prevState, loading: !prevState.loading };
     },
     setLoading(prevState, { payload }) {
-      console.log(payload);
       return { ...prevState, loading: payload };
     },
     setAuthState(prevState, { payload }) {
