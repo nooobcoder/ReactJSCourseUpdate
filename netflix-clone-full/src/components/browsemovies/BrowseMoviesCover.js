@@ -22,7 +22,6 @@ const BrowseMoviesCover = () => {
     fetchData();
   }, [Plot, Title]);
 
-  console.log(Title, Plot);
   return (
     <Header.Feature>
       <Header.FeatureCallOut>Watch {Title} Now</Header.FeatureCallOut>

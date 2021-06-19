@@ -8,6 +8,9 @@ import Form from "./form";
 import Spinner from "./spinner/Spinner";
 import Profiles from "./profiles";
 import Loading from "./loading";
+import Card from "./card";
+import Player from "./player";
+
 export {
   Accordion,
   Feature,
@@ -19,4 +22,6 @@ export {
   Jumbotron,
   OptForm,
   Profiles,
+  Card,
+  Player,
 };
