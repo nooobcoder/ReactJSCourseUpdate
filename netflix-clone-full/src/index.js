@@ -10,6 +10,17 @@ import AnimatedCursor from "react-animated-cursor";
 
 import store from "./context";
 
+// Print custom message when the app is not in development mode.
+if (process.env.REACT_APP_STATE !== "development") {
+  console.log(
+    "%cWarning",
+    "background: yellow; color: red; font-size: xx-large"
+  );
+  console.log(
+    "%cUsing this console may allow attackers to impersonate you and steal your information using an attack called Self-XSS.Do not enter or paste code that you do not understand.",
+    "color: gray; font-size: medium"
+  );
+}
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 root.render(

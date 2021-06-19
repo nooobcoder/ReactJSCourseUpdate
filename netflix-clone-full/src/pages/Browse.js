@@ -22,7 +22,7 @@ const Browse = () => {
 	*/
   return (
     <Fragment>
-      <BrowseContainer genres={genres} />;
+      <BrowseContainer genres={genres} />
     </Fragment>
   );
 };

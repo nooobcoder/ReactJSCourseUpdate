@@ -8,7 +8,6 @@ import { Profiles } from "../components";
 const SelectProfileContainer = ({ user, setProfile }) => {
   const { firebaseAuthState } = useSelector(({ app }) => app);
   const { displayName, photoURL, email } = firebaseAuthState;
-  console.log(firebaseAuthState.displayName);
   return (
     <Fragment>
       <Header bg={false}>
@@ -20,7 +19,11 @@ const SelectProfileContainer = ({ user, setProfile }) => {
       <Profiles>
         <Profiles.Title>Who's Watching</Profiles.Title>
         <Profiles.List>
-          <Profiles.User onClick={() => setProfile({ displayName, photoURL })}>
+          <Profiles.User
+            onClick={() => {
+              setProfile({ displayName, photoURL });
+            }}
+          >
             <Profiles.Picture src={photoURL} />
             <Profiles.Name>
               {displayName} {email}

@@ -33,7 +33,6 @@ const Signin = () => {
   const handleSignIn = async (event) => {
     event.preventDefault(); //Prevents form submission
     stateDispatch(toggleLoading());
-    console.log("FORM INVALID? ", isInvalid);
     !checkValidEmail() && (isInvalid = true);
     isInvalid && setError("Invalid Email Address");
 
