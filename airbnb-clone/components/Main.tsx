@@ -1,8 +1,9 @@
+import { nanoid } from 'nanoid';
 import React, { FC } from 'react';
 import { ApiResponseType, ExploreType, MediumCardsType } from '../pages';
-import SmallCard from './SmallCard';
-import { nanoid } from 'nanoid';
+import LargeCard from './LargeCard';
 import MediumCard from './MediumCard';
+import SmallCard from './SmallCard';
 
 const Main: FC<ExploreType> = ({ exploreData, cardsData }: ExploreType) => {
   return (
@@ -22,6 +23,13 @@ const Main: FC<ExploreType> = ({ exploreData, cardsData }: ExploreType) => {
             cardsData.map((item: MediumCardsType) => <MediumCard {...item} key={nanoid(5)} />)}
         </div>
       </section>
+
+      <LargeCard
+        img="https://a0.muscache.com/im/pictures/2da67c1c-0c61-4629-8798-1d4de1ac9291.jpg?im_w=1440"
+        title="The Greatest Outdoors"
+        description="Wishlists curated for you"
+        buttonText="Get Inspired"
+      />
     </main>
   );
 };

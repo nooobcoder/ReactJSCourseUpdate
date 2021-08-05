@@ -2,6 +2,7 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { FC } from 'react';
 import Banner from '../components/Banner';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Main from '../components/Main';
 
@@ -31,6 +32,8 @@ const Home: FC<ExploreType> = ({ exploreData, cardsData }) => {
       <Header />
       <Banner />
       <Main exploreData={exploreData} cardsData={cardsData} />
+
+      <Footer />
     </div>
   );
 };
