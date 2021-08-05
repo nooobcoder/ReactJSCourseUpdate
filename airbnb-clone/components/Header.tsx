@@ -6,7 +6,7 @@ import React, { FC } from 'react';
 
 const Header: FC = () => {
   return (
-    <header className="sticky top-0 z-50 grid grid-cols-3 shadow-xl py-5 px-5 md:px-10 mx-5 rounded-2xl ">
+    <header className="relative top-0 z-30 grid grid-cols-3 shadow-xl py-5 px-5 md:px-10 mx-5 rounded-2xl ">
       <div className="relative flex items-center h-10 cursor-pointer my-auto ">
         <Image src="/logo.png" layout="fill" objectFit="contain" objectPosition="left" />
       </div>
