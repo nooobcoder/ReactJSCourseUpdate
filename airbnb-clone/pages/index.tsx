@@ -10,11 +10,16 @@ export type ApiResponseType = {
   location: string;
   distance: string;
 };
+export type MediumCardsType = {
+  img: string;
+  title: string;
+};
 export interface ExploreType {
   exploreData: Array<ApiResponseType>;
+  cardsData: Array<MediumCardsType>;
 }
 
-const Home: FC<ExploreType> = ({ exploreData }) => {
+const Home: FC<ExploreType> = ({ exploreData, cardsData }) => {
   return (
     <div className="font-cereal">
       <Head>
@@ -25,7 +30,7 @@ const Home: FC<ExploreType> = ({ exploreData }) => {
 
       <Header />
       <Banner />
-      <Main exploreData={exploreData} />
+      <Main exploreData={exploreData} cardsData={cardsData} />
     </div>
   );
 };
@@ -35,7 +40,12 @@ export const getStaticProps: GetStaticProps<ExploreType> = async (): Promise<any
     const exploreData: ExploreType = (await (
       await fetch(`https://jsonkeeper.com/b/4G1G`)
     ).json()) as ExploreType;
-    return { props: { exploreData } };
+
+    const cardsData: ExploreType = (await await (
+      await fetch(`https://jsonkeeper.com/b/VHHT`)
+    ).json()) as ExploreType;
+
+    return { props: { exploreData, cardsData } };
   } catch (error) {
     console.log('Error fetching API!');
   }
