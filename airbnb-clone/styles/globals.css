@@ -18,3 +18,11 @@
   color: black;
   background: #ff5a5f;
 }
+
+/* Hiding the scrollbar */
+* {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
