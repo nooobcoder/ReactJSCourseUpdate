@@ -4,15 +4,21 @@ import Image from 'next/image';
 import React, { FC, useState } from 'react';
 import { DateRangePicker, Range } from 'react-date-range';
 import { UsersIcon } from '@heroicons/react/solid';
+import { useRouter } from 'next/dist/client/router';
 // Styled imports for react-date-range
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 
 /* --------------- */
 
-const Header: FC = () => {
+interface Props {
+  searchPlaceholder?: string;
+}
+
+const Header: FC<Props> = ({ searchPlaceholder }) => {
   const [searchInput, setSearchInput] = useState<string>('');
   const [numberOfGuests, setNumberOfGuests] = useState<number>(1);
+  const router = useRouter();
 
   enum DatePickerKeys {
     selection = 'selection',
@@ -37,16 +43,31 @@ const Header: FC = () => {
     setSearchInput('');
   };
 
+  const search = () => {
+    router.push({
+      pathname: '/search',
+      query: {
+        location: searchInput,
+        startDate: dateRange.startDate?.toISOString(),
+        endDate: dateRange.endDate?.toISOString(),
+        noOfGuests: numberOfGuests,
+      },
+    });
+  };
+
   return (
     <header className="relative top-0 z-30 grid grid-cols-3 shadow-xl py-5 px-5 md:px-10 mx-5 rounded-2xl ">
-      <div className="relative flex items-center h-10 cursor-pointer my-auto ">
+      <div
+        className="relative flex items-center h-10 cursor-pointer my-auto "
+        onClick={() => router.push('/')}
+      >
         <Image src="/logo.png" layout="fill" objectFit="contain" objectPosition="left" alt="logo" />
       </div>
 
       <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-md bg-gray-100">
         <input
           type="text"
-          placeholder="Start your search"
+          placeholder={searchPlaceholder || 'Start your search'}
           value={searchInput}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setSearchInput(event.target.value)
@@ -89,7 +110,9 @@ const Header: FC = () => {
             <button className="flex-grow text-gray-500" onClick={(e) => resetInput(e)}>
               CANCEL
             </button>
-            <button className="flex-grow text-red-400">SEARCH</button>
+            <button className="flex-grow text-red-400" onClick={() => search()}>
+              SEARCH
+            </button>
           </div>
         </div>
       )}

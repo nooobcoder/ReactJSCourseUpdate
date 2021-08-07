@@ -53,7 +53,10 @@ export const getStaticProps: GetStaticProps<ExploreType> = async (): Promise<any
     console.log('Error fetching API!');
   }
 
-  return { props: { exploreData: [] } };
+  return {
+    props: { exploreData: [] },
+    revalidate: 10, // Regenerate the static site data after 1 day
+  };
 };
 
 export default Home;
