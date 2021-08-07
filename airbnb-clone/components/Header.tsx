@@ -12,6 +12,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 
 const Header: FC = () => {
   const [searchInput, setSearchInput] = useState<string>('');
+  const [numberOfGuests, setNumberOfGuests] = useState<number>(1);
 
   enum DatePickerKeys {
     selection = 'selection',
@@ -31,6 +32,11 @@ const Header: FC = () => {
   };
   const selectionRange: Range = { ...dateRange };
 
+  const resetInput = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setSearchInput('');
+  };
+
   return (
     <header className="relative top-0 z-30 grid grid-cols-3 shadow-xl py-5 px-5 md:px-10 mx-5 rounded-2xl ">
       <div className="relative flex items-center h-10 cursor-pointer my-auto ">
@@ -41,6 +47,7 @@ const Header: FC = () => {
         <input
           type="text"
           placeholder="Start your search"
+          value={searchInput}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             setSearchInput(event.target.value)
           }
@@ -70,6 +77,19 @@ const Header: FC = () => {
           <div className="flex items-center border-b mb-4 mt-3">
             <h2 className="text-2xl flex-grow font-semibold ">Number of Guests</h2>
             <UsersIcon className="h-5" />
+            <input
+              type="number"
+              className="w-12 pl-2 text-lg outline-none text-red-400"
+              value={numberOfGuests}
+              min={1}
+              onChange={(e) => setNumberOfGuests(+e.target.value)}
+            />
+          </div>
+          <div className="flex">
+            <button className="flex-grow text-gray-500" onClick={(e) => resetInput(e)}>
+              CANCEL
+            </button>
+            <button className="flex-grow text-red-400">SEARCH</button>
           </div>
         </div>
       )}
