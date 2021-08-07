@@ -6,6 +6,7 @@ import React, { FC } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import InfoCard from '../components/InfoCard';
+import Map from '../components/Map';
 
 const filterTexts: Array<string> = [
   'Cancellation Flexibility',
@@ -27,13 +28,11 @@ export interface HotelSearchAPIParams {
   lat: number;
 }
 
-interface HotelPropsType {
+export interface HotelPropsType {
   searchResults: Array<HotelSearchAPIParams>;
 }
 
 const Search: FC<HotelPropsType> = ({ searchResults }) => {
-  console.log(searchResults);
-
   const router = useRouter();
   const { location, startDate, endDate, noOfGuests } = router.query;
 
@@ -65,6 +64,10 @@ const Search: FC<HotelPropsType> = ({ searchResults }) => {
               <InfoCard key={nanoid(4)} {...resultItem} />
             ))}
           </div>
+        </section>
+
+        <section className="hidden xl:inline-flex xl:min-w-[600px]">
+          <Map searchResults={searchResults} />
         </section>
       </main>
       <Footer />
