@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -21,7 +22,9 @@ const Search = () => {
 
           <div className="hidden lg:inline-flex">
             {filterTexts.map((filterItem) => (
-              <p className="px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg active:scale-95 transform transition ease-out active:bg-gray-100" >{filterItem}</p>
+              <p className="button" key={nanoid(4)}>
+                {filterItem}
+              </p>
             ))}
           </div>
         </section>
