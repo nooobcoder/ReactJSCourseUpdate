@@ -1,17 +1,24 @@
-import { FunctionComponent } from 'react';
 import fs from 'fs';
 import matter from 'gray-matter';
-import styles from '../../../styles/article.module.css';
-import { ArticleInfo } from '../../../structures/interface';
-import Markdown from '../../../components/Markdown';
-import { GetStaticPaths, GetStaticPathsResult, GetStaticProps, GetStaticPropsResult } from 'next';
+import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next';
 import Image from 'next/image';
-
+import { useRouter } from 'next/router';
+import { FunctionComponent } from 'react';
+import Markdown from '../../../components/Markdown';
+import { ArticleInfo } from '../../../structures/interface';
+import styles from '../../../styles/article.module.css';
 interface IProps {
   article: ArticleInfo;
 }
 
 const Article: FunctionComponent<IProps> = ({ article }) => {
+  const router = useRouter();
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={styles.article}>
       <div className={styles.thumbnail}>
@@ -53,14 +60,17 @@ const getStaticProps: GetStaticProps = async ({ ...context }) => {
     props: {
       article: article,
     },
-    revalidate: 60,
+    revalidate: 30,
   };
 };
 
 const getStaticPaths: GetStaticPaths = async (): Promise<GetStaticPathsResult> => {
   const files = fs.readdirSync('_posts');
   const paths = files.map((file) => ({ params: { slug: file.split('.')[0] } }));
-  return { paths, fallback: false };
+  return {
+    paths,
+    fallback: true,
+  };
 };
 
 export { getStaticPaths, getStaticProps };
