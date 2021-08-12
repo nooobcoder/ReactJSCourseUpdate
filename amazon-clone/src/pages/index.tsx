@@ -1,9 +1,15 @@
-import type { NextPage } from 'next'
+import Head from 'next/head';
+import Header from '../components/Header';
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
-    <header className='flex	justify-center '><h2 className='text-xl'>Amazon Clone</h2></header>
-  )
-}
+    <div>
+      <Head>
+        <title>Amazon Clone</title>
+      </Head>
+      <Header />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
