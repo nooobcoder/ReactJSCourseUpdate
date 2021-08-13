@@ -12,6 +12,7 @@
     "telemetry:status": "next telemetry status"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^1.21.1",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "next": "11.0.1",

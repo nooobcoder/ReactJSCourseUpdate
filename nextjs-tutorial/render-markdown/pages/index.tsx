@@ -5,7 +5,7 @@ import Card from '../components/Card';
 import { GetStaticProps } from 'next';
 import matter from 'gray-matter';
 import fs from 'fs';
-
+import supabase from '../supabase/supaClient';
 interface IProps {
   articles: ArticleMeta[];
 }
@@ -18,7 +18,22 @@ const Home: FC<IProps> = ({ articles }) => (
   </div>
 );
 
-const getStaticProps: GetStaticProps = (context) => {
+const getStaticProps: GetStaticProps = async (context) => {
+  /* const { data: blogs_info, error } = await supabase.from('blogs_info').select('*'); */
+  /*
+[
+  {
+    seq_no: 1,
+    filename: 'two.md',
+    file_url: 'https://qvcrluuvaonuknkyamaz.supabase.in/storage/v1/object/public/blogs/two.md'
+  },
+  {
+    seq_no: 2,
+    filename: 'one.md',
+    file_url: 'https://qvcrluuvaonuknkyamaz.supabase.in/storage/v1/object/public/blogs/one.md'
+  }
+]
+ */
   const files = fs.readdirSync('_posts');
 
   let articles = files.map((file) => {
