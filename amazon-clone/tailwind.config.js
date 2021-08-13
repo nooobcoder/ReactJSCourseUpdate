@@ -4,6 +4,10 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        ember: ['Amazon Ember'],
+        'ember-italic': ['Amazon Ember Italic']
+      },
       colors: {
         amazon_blue: {
           light: '#232F3E',

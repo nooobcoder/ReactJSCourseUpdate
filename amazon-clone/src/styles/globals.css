@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Utility class */
+@layer components {
+  .link {
+    @apply cursor-pointer hover:underline;
+  }
+}
+
+@font-face {
+  font-family: 'Amazon Ember Italic';
+  src: url('../public/fonts/AmazonEmberItalic.ttf');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Amazon Ember';
+  src: url('../public/fonts/AmazonEmberRegular.ttf');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
