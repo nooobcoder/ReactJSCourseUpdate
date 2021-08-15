@@ -10,7 +10,7 @@ const Product = ({ category, description, id, image, price, title }: ProductsRes
   const [hasPrime] = useState(Math.random() < 0.5);
 
   return (
-    <div className="relative flex flex-col m-5 bg-white z-30 p-10">
+    <div className="relative flex flex-col m-5 bg-white z-30 p-10 hover:scale-110 duration-300 transform transition rounded-lg ">
       <p className="absolute top-2 right-2 text-xs text-gray-400 font-ember-italic italic capitalize">
         {category}
       </p>
@@ -20,6 +20,7 @@ const Product = ({ category, description, id, image, price, title }: ProductsRes
         src={image}
         objectFit="contain"
         placeholder="blur"
+        className="hover:scale-110 transform ease-out duration-300"
         blurDataURL="iVBORw0KGgoAAAANSUhEUgAAAGQAAAAKCAYAAABCHPt+AAAAK0lEQVR42u3RAQ0AAAQAMOLLp4Mcatj8FZ5T0cEZKUQIQoQgRAhChCDktwXAlRafzMh42wAAAABJRU5ErkJggg=="
       />
 
@@ -32,7 +33,7 @@ const Product = ({ category, description, id, image, price, title }: ProductsRes
           ))}
       </div>
       <p className="text-xs my-2 line-clamp-2">{description}</p>
-      <div className="mb-5 ">
+      <div className="mb-5 font-extrabold ">
         <Currency quantity={price} currency="USD" />
       </div>
 

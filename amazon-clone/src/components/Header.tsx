@@ -1,6 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { MenuIcon, SearchIcon, ShoppingCartIcon } from '@heroicons/react/outline';
+import { session, signIn, signOut, useSession } from 'next-auth/client';
 
 const Header = () => {
   return (
@@ -33,7 +35,7 @@ const Header = () => {
               src="http://purecatamphetamine.github.io/country-flag-icons/3x2/IN.svg"
             />
           </div>
-          <div className=" link">
+          <div onClick={() => signIn()} className=" link">
             <p>Hello, Ankur Paul</p>
             <p className="font-extrabold md:text-sm">Account &amp; Lists</p>
           </div>
