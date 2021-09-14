@@ -20,7 +20,7 @@ export default {
       options: {
         list: [
           { title: "House", value: "house" },
-          { title: "flat", value: "Flat" },
+          { title: "Flat", value: "flat" },
           { title: "Bed and Breakfast", value: "bed-and-breakfast" },
           { title: "Boutique Hotel", value: "boutique-hotel" },
         ],
