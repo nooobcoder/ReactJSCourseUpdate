@@ -24,7 +24,7 @@ const Home: NextPage<PropTypes> = ({ properties, ...children }) => {
               {properties.map((property: any) => (
                 <Link href={`property/${property.slug.current}`}>
                   <div key={property._id} className="card">
-                    <img src={urlFor(property.mainImage).toString()} />
+                    <img src={urlFor(property.mainImage).toString()!} />
                     <p>
                       {property.reviews.length} review
                       {isMultiple(property.reviews.length)}
