@@ -1,21 +1,56 @@
-import { GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
+import {
+	GraphQLID,
+	GraphQLInt,
+	GraphQLList,
+	GraphQLObjectType,
+	GraphQLSchema,
+	GraphQLString,
+} from "graphql";
 import _ from "lodash";
-const { find } = _;
+const { find, filter } = _;
 
 const DummyBooks = [
-	{ name: "Name of the Wind", genre: "Fantasy", id: "1" },
-	{ name: "The Final Empire", genre: "Fantasy", id: "2" },
-	{ name: "The Long Earth", genre: "Sci-Fi", id: "3" },
+	{ name: "Name of the Wind", genre: "Fantasy", id: "1", authorId: "1" },
+	{ name: "The Final Empire", genre: "Fantasy", id: "2", authorId: "2" },
+	{ name: "The Long Earth", genre: "Sci-Fi", id: "3", authorId: "3" },
 ];
-
+const DummyAuthors = [
+	{ name: "Patrick Rothfuss", age: 44, id: "1" },
+	{ name: "Brandon Sanderson", age: 42, id: "2" },
+	{ name: "Terry Pratchett", age: 66, id: "3" },
+];
 ///////
 
-const BookType = new GraphQLObjectType({
+const BookType: GraphQLObjectType = new GraphQLObjectType({
 	name: "Book",
 	fields: () => ({
-		id: { type: GraphQLString },
+		id: { type: GraphQLID },
 		name: { type: GraphQLString },
 		genre: { type: GraphQLString },
+
+		author: {
+			type: AuthorType,
+			resolve: (parent, args) => {
+				const { authorId: id } = parent;
+				return find(DummyAuthors, { id });
+			},
+		},
+	}),
+});
+
+const AuthorType: GraphQLObjectType = new GraphQLObjectType({
+	name: "Author",
+	fields: () => ({
+		id: { type: GraphQLID },
+		name: { type: GraphQLString },
+		age: { type: GraphQLInt },
+
+		// Get list of the author's books using GraphQLList type
+		books: {
+			type: new GraphQLList(BookType),
+			resolve: ({ id: authorId }, args) =>
+				filter(DummyBooks, { authorId }),
+		},
 	}),
 });
 
@@ -26,7 +61,7 @@ const RootQuery = new GraphQLObjectType({
 		book: {
 			type: BookType,
 			// Required arguments
-			args: { id: { type: GraphQLString } },
+			args: { id: { type: GraphQLID } },
 			resolve(parent, args) {
 				// Code to get data from db
 				// Parent is for relating data from other nodes in graph
@@ -35,6 +70,12 @@ const RootQuery = new GraphQLObjectType({
 				const { id } = args;
 				return find(DummyBooks, { id });
 			},
+		},
+
+		author: {
+			type: AuthorType,
+			args: { id: { type: GraphQLID } },
+			resolve: (parent, { id }) => find(DummyAuthors, { id }),
 		},
 	},
 });

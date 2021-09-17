@@ -1,0 +1,38 @@
+@HOST = 192.168.0.120
+@PORT = 3000
+
+# Get Books
+POST /graphql HTTP/1.1
+Host: {{HOST}}:{{PORT}}
+Content-Type: application/json
+Content-Length: 92
+
+{"query":"{\n  book(id:\"1\"){\n      name,\n      id,\n      genre\n  }\n}","variables":{}}
+###
+
+# Get Authors
+POST /graphql HTTP/1.1
+Host: {{HOST}}:{{PORT}}
+Content-Type: application/json
+Content-Length: 69
+
+{"query":"{\n  author(id:2){\n      name,age\n  }\n}","variables":{}}
+
+###
+
+# Get books and their authors
+POST /graphql HTTP/1.1
+Host: {{HOST}}:{{PORT}}
+Content-Type: application/json
+Content-Length: 99
+
+{"query":"{\n  book(id:1){\n    name,genre\n    author{\n      name\n    }\n  }\n}","variables":{}}
+###
+
+# Get authors and their list of books
+POST /graphql HTTP/1.1
+Host: {{HOST}}:{{PORT}}
+Content-Type: application/json
+Content-Length: 103
+
+{"query":"{\n  author(id:1){\n    name,age,books {\n      id,name,genre\n    }\n  }\n}","variables":{}}

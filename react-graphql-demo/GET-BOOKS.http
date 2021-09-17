@@ -1,7 +1,0 @@
-POST /graphql HTTP/1.1
-Host: 192.168.0.120:3000
-Content-Type: application/json
-Content-Length: 92
-
-{"query":"{\n  book(id:\"1\"){\n      name,\n      id,\n      genre\n  }\n}","variables":{}}
-###
