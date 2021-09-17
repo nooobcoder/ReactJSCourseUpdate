@@ -1,0 +1,16 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"sourceMap": true,
+		"strict": true,
+		"noImplicitReturns": true,
+		"allowSyntheticDefaultImports": true,
+		"noImplicitAny": true,
+		"module": "es6",
+		"watch": true,
+		"moduleResolution": "node",
+		"target": "es5",
+		"allowJs": true
+	},
+	"include": ["./src/**/*"]
+}
