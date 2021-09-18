@@ -36,3 +36,23 @@ Content-Type: application/json
 Content-Length: 103
 
 {"query":"{\n  author(id:1){\n    name,age,books {\n      id,name,genre\n    }\n  }\n}","variables":{}}
+
+###
+
+# Get all books and their authors
+POST /graphql HTTP/1.1
+Host: {{HOST}}:{{PORT}}
+Content-Type: application/json
+Content-Length: 72
+
+{"query":"{\n  books{name,genre,author{id,name,age}}\n}","variables":{}}
+
+###
+
+# Get all authors and their books
+POST /graphql HTTP/1.1
+Host: {{HOST}}:{{PORT}}
+Content-Type: application/json
+Content-Length: 68
+
+{"query":"{\n  authors{name,age,books{name,genre}}}","variables":{}}

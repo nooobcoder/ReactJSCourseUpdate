@@ -4,7 +4,10 @@ var find = _.find, filter = _.filter;
 var DummyBooks = [
     { name: "Name of the Wind", genre: "Fantasy", id: "1", authorId: "1" },
     { name: "The Final Empire", genre: "Fantasy", id: "2", authorId: "2" },
+    { name: "The Hero of Ages", genre: "Fantasy", id: "4", authorId: "2" },
     { name: "The Long Earth", genre: "Sci-Fi", id: "3", authorId: "3" },
+    { name: "The Colour of Magic", genre: "Fantasy", id: "5", authorId: "3" },
+    { name: "The Light Fantastic", genre: "Fantasy", id: "6", authorId: "3" },
 ];
 var DummyAuthors = [
     { name: "Patrick Rothfuss", age: 44, id: "1" },
@@ -67,6 +70,11 @@ var RootQuery = new GraphQLObjectType({
                 return find(DummyAuthors, { id: id });
             },
         },
+        books: {
+            type: new GraphQLList(BookType),
+            resolve: function (parent, args) { return DummyBooks; },
+        },
+        authors: { type: new GraphQLList(AuthorType), resolve: function () { return DummyAuthors; } },
     },
 });
 var graphqlSchema = new GraphQLSchema({ query: RootQuery });
