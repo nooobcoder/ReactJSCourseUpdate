@@ -56,3 +56,23 @@ Content-Type: application/json
 Content-Length: 68
 
 {"query":"{\n  authors{name,age,books{name,genre}}}","variables":{}}
+
+###
+
+# Add an author
+POST /graphql HTTP/1.1
+Host: {{HOST}}:{{PORT}}
+Content-Type: application/json
+Content-Length: 109
+
+{"query":"mutation {\n    addAuthor(name:\"Ankur Paul\",age:21){\n        name,age\n    }\n}","variables":{}}
+
+###
+
+# Add a book
+POST /graphql HTTP/1.1
+Host: {{HOST}}:{{PORT}}
+Content-Type: application/json
+Content-Length: 134
+
+{"query":"mutation {\n    addBook(name:\"The Alchemist\",genre:\"Fiction\",authorId:4){\n        name,genre\n    }\n}","variables":{}}

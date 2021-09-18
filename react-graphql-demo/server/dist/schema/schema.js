@@ -1,20 +1,6 @@
 import { GraphQLID, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLString, } from "graphql";
-import _ from "lodash";
-var find = _.find, filter = _.filter;
-var DummyBooks = [
-    { name: "Name of the Wind", genre: "Fantasy", id: "1", authorId: "1" },
-    { name: "The Final Empire", genre: "Fantasy", id: "2", authorId: "2" },
-    { name: "The Hero of Ages", genre: "Fantasy", id: "4", authorId: "2" },
-    { name: "The Long Earth", genre: "Sci-Fi", id: "3", authorId: "3" },
-    { name: "The Colour of Magic", genre: "Fantasy", id: "5", authorId: "3" },
-    { name: "The Light Fantastic", genre: "Fantasy", id: "6", authorId: "3" },
-];
-var DummyAuthors = [
-    { name: "Patrick Rothfuss", age: 44, id: "1" },
-    { name: "Brandon Sanderson", age: 42, id: "2" },
-    { name: "Terry Pratchett", age: 66, id: "3" },
-];
-///////
+import { authorModel } from "../models/author.js";
+import { bookModel } from "../models/book.js";
 var BookType = new GraphQLObjectType({
     name: "Book",
     fields: function () { return ({
@@ -23,9 +9,9 @@ var BookType = new GraphQLObjectType({
         genre: { type: GraphQLString },
         author: {
             type: AuthorType,
-            resolve: function (parent, args) {
-                var id = parent.authorId;
-                return find(DummyAuthors, { id: id });
+            resolve: function (_a, args) {
+                var authorId = _a.authorId;
+                return authorModel.findById(authorId);
             },
         },
     }); },
@@ -41,10 +27,39 @@ var AuthorType = new GraphQLObjectType({
             type: new GraphQLList(BookType),
             resolve: function (_a, args) {
                 var authorId = _a.id;
-                return filter(DummyBooks, { authorId: authorId });
+                return bookModel.find({
+                    authorId: authorId,
+                });
             },
         },
     }); },
+});
+var Mutation = new GraphQLObjectType({
+    name: "Mutation",
+    fields: {
+        addAuthor: {
+            type: AuthorType,
+            args: { name: { type: GraphQLString }, age: { type: GraphQLInt } },
+            resolve: function (parent, _a) {
+                var name = _a.name, age = _a.age;
+                var author = new authorModel({ name: name, age: age });
+                return author.save();
+            },
+        },
+        addBook: {
+            type: BookType,
+            args: {
+                name: { type: GraphQLString },
+                genre: { type: GraphQLString },
+                authorId: { type: GraphQLID },
+            },
+            resolve: function (parent, _a) {
+                var name = _a.name, genre = _a.genre, authorId = _a.authorId;
+                var book = new bookModel({ name: name, genre: genre, authorId: authorId });
+                return book.save();
+            },
+        },
+    },
 });
 var RootQuery = new GraphQLObjectType({
     name: "RootQueryType",
@@ -55,11 +70,8 @@ var RootQuery = new GraphQLObjectType({
             // Required arguments
             args: { id: { type: GraphQLID } },
             resolve: function (parent, args) {
-                // Code to get data from db
-                // Parent is for relating data from other nodes in graph
-                // args -> id (arguments from the client request)
                 var id = args.id;
-                return find(DummyBooks, { id: id });
+                return bookModel.findById(id);
             },
         },
         author: {
@@ -67,17 +79,23 @@ var RootQuery = new GraphQLObjectType({
             args: { id: { type: GraphQLID } },
             resolve: function (parent, _a) {
                 var id = _a.id;
-                return find(DummyAuthors, { id: id });
+                return authorModel.findById(id);
             },
         },
         books: {
             type: new GraphQLList(BookType),
-            resolve: function (parent, args) { return DummyBooks; },
+            resolve: function (parent, args) { return bookModel.find(); },
         },
-        authors: { type: new GraphQLList(AuthorType), resolve: function () { return DummyAuthors; } },
+        authors: {
+            type: new GraphQLList(AuthorType),
+            resolve: function () { return authorModel.find(); },
+        },
     },
 });
-var graphqlSchema = new GraphQLSchema({ query: RootQuery });
+var graphqlSchema = new GraphQLSchema({
+    query: RootQuery,
+    mutation: Mutation,
+});
 // Named export
 export { graphqlSchema };
 //# sourceMappingURL=schema.js.map
