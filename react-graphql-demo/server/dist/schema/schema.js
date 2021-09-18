@@ -1,4 +1,4 @@
-import { GraphQLID, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLString, } from "graphql";
+import { GraphQLID, GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLNonNull, GraphQLString, } from "graphql";
 import { authorModel } from "../models/author.js";
 import { bookModel } from "../models/book.js";
 var BookType = new GraphQLObjectType({
@@ -39,7 +39,10 @@ var Mutation = new GraphQLObjectType({
     fields: {
         addAuthor: {
             type: AuthorType,
-            args: { name: { type: GraphQLString }, age: { type: GraphQLInt } },
+            args: {
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                age: { type: new GraphQLNonNull(GraphQLInt) },
+            },
             resolve: function (parent, _a) {
                 var name = _a.name, age = _a.age;
                 var author = new authorModel({ name: name, age: age });
@@ -49,9 +52,9 @@ var Mutation = new GraphQLObjectType({
         addBook: {
             type: BookType,
             args: {
-                name: { type: GraphQLString },
-                genre: { type: GraphQLString },
-                authorId: { type: GraphQLID },
+                name: { type: new GraphQLNonNull(GraphQLString) },
+                genre: { type: new GraphQLNonNull(GraphQLString) },
+                authorId: { type: new GraphQLNonNull(GraphQLID) },
             },
             resolve: function (parent, _a) {
                 var name = _a.name, genre = _a.genre, authorId = _a.authorId;

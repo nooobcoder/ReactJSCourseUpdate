@@ -4,6 +4,7 @@ import {
   GraphQLList,
   GraphQLObjectType,
   GraphQLSchema,
+  GraphQLNonNull,
   GraphQLString,
 } from "graphql";
 import { authorModel } from "../models/author.js";
@@ -46,7 +47,10 @@ const Mutation = new GraphQLObjectType({
   fields: {
     addAuthor: {
       type: AuthorType,
-      args: { name: { type: GraphQLString }, age: { type: GraphQLInt } },
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        age: { type: new GraphQLNonNull(GraphQLInt) },
+      },
       resolve: (parent, { name, age }) => {
         const author = new authorModel({ name, age });
         return author.save();
@@ -55,9 +59,9 @@ const Mutation = new GraphQLObjectType({
     addBook: {
       type: BookType,
       args: {
-        name: { type: GraphQLString },
-        genre: { type: GraphQLString },
-        authorId: { type: GraphQLID },
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        genre: { type: new GraphQLNonNull(GraphQLString) },
+        authorId: { type: new GraphQLNonNull(GraphQLID) },
       },
       resolve: (parent, { name, genre, authorId }) => {
         let book = new bookModel({ name, genre, authorId });
