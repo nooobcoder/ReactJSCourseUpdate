@@ -41,9 +41,15 @@ const BookList: React.FunctionComponent<any> = ({
 
 	const displayBooks = () =>
 		loading ||
-		books?.map(({ id, name }: BookSchema) => (
-			<li key={id as Key}>{name}</li>
-		));
+		books
+			.map((value) => ({ value, sort: Math.random() })) // Shuffling the array
+			.sort((a, b) => a.sort - b.sort)
+			.map(({ value }) => value)
+			?.map(
+				(
+					{ id, name }: BookSchema // Rendering the shuffled array
+				) => <li key={id as Key}>{name}</li>
+			);
 
 	return (
 		<div>
