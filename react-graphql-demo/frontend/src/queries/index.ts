@@ -1,5 +1,5 @@
 import { gql } from "apollo-boost";
-
+import { BookSchema } from "../schemas";
 const GET_BOOKS_QUERY = gql`
 	{
 		books {
@@ -20,4 +20,17 @@ const GET_AUTHORS_QUERY = gql`
 	}
 `;
 
-export { GET_AUTHORS_QUERY, GET_BOOKS_QUERY };
+const ADD_BOOK_MUTATION = gql`
+	mutation AddBook($name: String!, $genre: String!, $authorId: ID!) {
+		addBook(name: $name, genre: $genre, authorId: $authorId) {
+			name
+			genre
+			author {
+				name
+				age
+			}
+		}
+	}
+`;
+
+export { GET_AUTHORS_QUERY, GET_BOOKS_QUERY, ADD_BOOK_MUTATION };

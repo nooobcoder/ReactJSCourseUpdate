@@ -1,7 +1,7 @@
-import { Key, useEffect } from "react";
-import { graphql, QueryResult } from "react-apollo";
-import { GET_AUTHORS_QUERY } from "../queries";
-import { AuthorSchema } from "../schemas";
+import { Key, useEffect, useState } from "react";
+import { graphql, QueryResult, useMutation } from "react-apollo";
+import { ADD_BOOK_MUTATION, GET_AUTHORS_QUERY } from "../queries";
+import { AuthorSchema, BookSchema } from "../schemas";
 
 interface PropTypes {
 	data: {
@@ -9,11 +9,23 @@ interface PropTypes {
 	} & QueryResult;
 }
 
+enum STATE_FIELDS {
+	BOOK_NAME = "BOOK_NAME",
+	GENRE = "GENRE",
+	AUTHOR_ID = "AUTHOR_ID",
+}
+
 const AddBook: React.FunctionComponent<any> = ({
 	data: { authors, loading },
 }: PropTypes): JSX.Element => {
+	const [formData, setUploadData] = useState<BookSchema>({
+		name: "",
+		genre: "",
+		authorId: "",
+	});
+
 	useEffect(() => {
-		console.log(authors, loading);
+		console.log("[ AUTHORS ] :", authors, loading);
 	}, [authors, loading]);
 
 	const displayAuthors = () =>
@@ -24,24 +36,76 @@ const AddBook: React.FunctionComponent<any> = ({
 			</option>
 		));
 
+	const [addBookToDatabase, result] = useMutation(ADD_BOOK_MUTATION);
+	useEffect(() => {
+		console.log(result);
+	}, [result]);
+
+	const stateManager = (value: String, fieldName: STATE_FIELDS) => {
+		switch (fieldName) {
+			case STATE_FIELDS.BOOK_NAME:
+				setUploadData((prevState: BookSchema) => ({
+					...prevState,
+					name: value,
+				}));
+				break;
+			case STATE_FIELDS.GENRE:
+				setUploadData((prevState: BookSchema) => ({
+					...prevState,
+					genre: value,
+				}));
+				break;
+			case STATE_FIELDS.AUTHOR_ID:
+				setUploadData((prevState: BookSchema) => ({
+					...prevState,
+					authorId: value,
+				}));
+				break;
+			default:
+				console.warn("INVALID FIELD NAME FOR STATE UPDATE");
+		}
+	};
+
 	return (
 		<form id="add-book">
 			<div className="field">
 				<label>Book name:</label>
-				<input type="text" />
+				<input
+					type="text"
+					onChange={(e) =>
+						stateManager(e.target.value, STATE_FIELDS.BOOK_NAME)
+					}
+				/>
 			</div>
 			<div className="field">
 				<label>Genre:</label>
-				<input type="text" />
+				<input
+					type="text"
+					onChange={(e) =>
+						stateManager(e.target.value, STATE_FIELDS.GENRE)
+					}
+				/>
 			</div>
 			<div className="field">
 				<label>Author:</label>
-				<select>
+				<select
+					onChange={(e) =>
+						stateManager(e.target.value, STATE_FIELDS.AUTHOR_ID)
+					}
+				>
 					<option>Select author</option>
 					{displayAuthors()}
 				</select>
 			</div>
-			<button>+</button>
+			<button
+				type="submit"
+				onClick={(e) => {
+					e.preventDefault();
+					addBookToDatabase({ variables: { ...formData } });
+				}}
+			>
+				+
+			</button>
 		</form>
 	);
 };
