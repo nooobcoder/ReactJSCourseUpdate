@@ -1,6 +1,10 @@
 import { Key, useEffect, useState } from "react";
 import { graphql, QueryResult, useMutation } from "react-apollo";
-import { ADD_BOOK_MUTATION, GET_AUTHORS_QUERY } from "../queries";
+import {
+	ADD_BOOK_MUTATION,
+	GET_AUTHORS_QUERY,
+	GET_BOOKS_QUERY,
+} from "../queries";
 import { AuthorSchema, BookSchema } from "../schemas";
 
 interface PropTypes {
@@ -101,7 +105,10 @@ const AddBook: React.FunctionComponent<any> = ({
 				type="submit"
 				onClick={(e) => {
 					e.preventDefault();
-					addBookToDatabase({ variables: { ...formData } });
+					addBookToDatabase({
+						variables: { ...formData },
+						refetchQueries: [{ query: GET_BOOKS_QUERY }],
+					});
 				}}
 			>
 				+
