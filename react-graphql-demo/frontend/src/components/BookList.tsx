@@ -1,30 +1,7 @@
-import { gql } from "apollo-boost";
-import { graphql, QueryResult } from "react-apollo";
 import { Key, useEffect } from "react";
-interface AuthorSchema {
-	id: Key;
-	name?: String;
-	age?: Number;
-	books?: Array<BookSchema>;
-}
-
-interface BookSchema {
-	id: Key;
-	name?: String;
-	genre?: String;
-	authorId?: String;
-	author?: Array<AuthorSchema>;
-}
-
-const GET_BOOKS_QUERY = gql`
-	{
-		books {
-			id
-			name
-			genre
-		}
-	}
-`;
+import { graphql, QueryResult } from "react-apollo";
+import { GET_BOOKS_QUERY } from "../queries";
+import { BookSchema } from "../schemas";
 
 interface PropTypes {
 	data: {
