@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 //// !
 import cors from "cors";
 // Allow cross-origin requests
-app.use(cors);
+app.use(cors());
 // make sure to replace my db string & creds with your own
 mongoose.connect("mongodb://admin:adminadmin@192.168.0.118:27017/graphql?authSource=admin&readPreference=primary&appname=GraphQL%20Tutorial&directConnection=true&ssl=false");
 mongoose.connection.once("open", function () {

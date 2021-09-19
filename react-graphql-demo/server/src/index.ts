@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 
 import cors from "cors";
 // Allow cross-origin requests
-app.use(cors);
+app.use(cors());
 
 // make sure to replace my db string & creds with your own
 mongoose.connect(
