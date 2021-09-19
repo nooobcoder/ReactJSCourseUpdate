@@ -1,7 +1,10 @@
-import { Key, useEffect } from "react";
+import { Key, useEffect, useState } from "react";
 import { graphql, QueryResult } from "react-apollo";
 import { GET_BOOKS_QUERY } from "../queries";
 import { BookSchema } from "../schemas";
+
+import { selectedBookContext } from "../context";
+import BookDetails from "./BookDetails";
 
 interface PropTypes {
 	data: {
@@ -12,9 +15,9 @@ interface PropTypes {
 const BookList: React.FunctionComponent<any> = ({
 	data: { books, loading },
 }: PropTypes): JSX.Element => {
-	useEffect(() => {
-		console.log(books, loading);
-	}, [books, loading]);
+	const [selectedBookId, setSelectedBook] = useState<BookSchema>({
+		id: undefined,
+	});
 
 	const displayBooks = () =>
 		loading ||
@@ -25,13 +28,21 @@ const BookList: React.FunctionComponent<any> = ({
 			?.map(
 				(
 					{ id, name }: BookSchema // Rendering the shuffled array
-				) => <li key={id as Key}>{name}</li>
+				) => (
+					<li
+						key={id as Key}
+						onClick={(e) => setSelectedBook({ id })}
+					>
+						{name}
+					</li>
+				)
 			);
 
 	return (
-		<div>
+		<selectedBookContext.Provider value={selectedBookId}>
 			<ul id="book-list">{displayBooks()}</ul>
-		</div>
+			<BookDetails />
+		</selectedBookContext.Provider>
 	);
 };
 

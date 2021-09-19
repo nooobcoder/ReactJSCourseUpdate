@@ -23,14 +23,12 @@ const AddBook: React.FunctionComponent<any> = ({
 	data: { authors, loading },
 }: PropTypes): JSX.Element => {
 	const [formData, setUploadData] = useState<BookSchema>({
-		name: "",
-		genre: "",
-		authorId: "",
+		name: undefined,
+		genre: undefined,
+		authorId: undefined,
 	});
 
-	useEffect(() => {
-		console.log("[ AUTHORS ] :", authors, loading);
-	}, [authors, loading]);
+	useEffect(() => {}, [authors, loading]);
 
 	const displayAuthors = () =>
 		loading ||
@@ -41,9 +39,6 @@ const AddBook: React.FunctionComponent<any> = ({
 		));
 
 	const [addBookToDatabase, result] = useMutation(ADD_BOOK_MUTATION);
-	useEffect(() => {
-		console.log(result);
-	}, [result]);
 
 	const stateManager = (value: String, fieldName: STATE_FIELDS) => {
 		switch (fieldName) {
@@ -105,10 +100,11 @@ const AddBook: React.FunctionComponent<any> = ({
 				type="submit"
 				onClick={(e) => {
 					e.preventDefault();
-					addBookToDatabase({
-						variables: { ...formData },
-						refetchQueries: [{ query: GET_BOOKS_QUERY }],
-					});
+					if (formData.name && formData.authorId)
+						addBookToDatabase({
+							variables: { ...formData },
+							refetchQueries: [{ query: GET_BOOKS_QUERY }],
+						});
 				}}
 			>
 				+
