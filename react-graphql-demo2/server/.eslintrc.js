@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    browser: true,
+    browser: false,
     commonjs: true,
     es2021: true,
   },
@@ -23,6 +23,7 @@ module.exports = {
       },
     ],
   },
+  ignorePatterns: ['dist/*', 'node_moduls/*'],
   settings: {
     'import/resolver': {
       node: {
