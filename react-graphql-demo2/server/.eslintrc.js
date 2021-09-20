@@ -12,6 +12,11 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   rules: {
     'no-console': 'off',
+    'max-len': [0, 160, 2, { ignoreUrls: true }],
+    'arrow-body-style': ['error', 'as-needed'],
+    'no-unused-vars': ['error', { args: 'none' }],
+    'implicit-arrow-linebreak': ['error', 'beside'],
+    'import/newline-after-import': ['error', { count: 1 }],
     'import/extensions': [
       'error',
       'ignorePackages',
