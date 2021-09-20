@@ -1,32 +1,38 @@
-const { ApolloServer, gql } = require("apollo-server");
+import { ApolloServer, gql } from 'apollo-server';
+import { animals, mainCards } from './db';
 
 const typeDefs = gql`
-	type Book {
-		title: String
-		author: String
-	}
-	type Query {
-		books: [Book]
-	}
+  type MainCard {
+    title: String!
+    image: String!
+  }
+  type Animal {
+    image: String!
+    title: String!
+    rating: Float
+    price: String!
+    slug: String!
+    description: [String!]!
+    stock: Int!
+    onSale: Boolean
+  }
+  type Query {
+    animals: [Animal!]!
+    animal(slug: String!): Animal
+    mainCards: [MainCard]
+  }
 `;
 
-const books = [
-	{
-		title: "The Awakening",
-		author: "Kate Chopin",
-	},
-	{
-		title: "City of Glass",
-		author: "Paul Auster",
-	},
-];
-
 const resolvers = {
-	Query: { books: () => books },
+  Query: {
+    mainCards: () => mainCards,
+    animals: () => animals,
+    animal: (parent: any, args: any, ctx: any) => animals.find((animal) => animal.slug === args.slug),
+  },
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }: any) => {
-	console.log(`🚀  Server ready at ${url}`);
+  console.log(`🚀  Server ready at ${url}`);
 });
