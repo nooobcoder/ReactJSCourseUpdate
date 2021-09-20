@@ -1,17 +1,21 @@
 {
 	"compilerOptions": {
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "es6",
+    "noEmitOnError": true,
+    "moduleResolution": "node",
 		"outDir": "./dist/",
 		"sourceMap": true,
+    "lib": ["es6"],
 		"strict": true,
 		"noImplicitReturns": true,
 		"allowSyntheticDefaultImports": true,
 		"noImplicitAny": true,
-		"module": "es6",
 		"watch": true,
-		"moduleResolution": "node",
-		"target": "es5",
 		"allowJs": true
 	},
+  "lib": ["es2015"],
   "exclude": ["node_modules"],
 	"include": ["./src/**/*"]
 }
