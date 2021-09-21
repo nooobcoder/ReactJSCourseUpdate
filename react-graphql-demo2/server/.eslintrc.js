@@ -9,9 +9,18 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 12,
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'plugin:prettier/recommended'],
   rules: {
     'no-console': 'off',
+    'object-curly-newline': [
+      'error',
+      {
+        ObjectExpression: 'always',
+        ObjectPattern: { multiline: true },
+        ImportDeclaration: 'never',
+        ExportDeclaration: { multiline: true, minProperties: 3 },
+      },
+    ],
     'max-len': [0, 160, 2, { ignoreUrls: true }],
     'arrow-body-style': ['error', 'as-needed'],
     'no-unused-vars': ['error', { args: 'none' }],

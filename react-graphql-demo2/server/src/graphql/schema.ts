@@ -30,6 +30,9 @@ const typeDefs = gql`
     categories: [Category!]!
     category(slug: String!): Category
   }
+  type Mutation {
+    addAnimal: Animal
+  }
 `;
 
 export default typeDefs;
