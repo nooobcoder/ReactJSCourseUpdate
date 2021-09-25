@@ -2,21 +2,30 @@ import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
-  useQuery,
+  useSubscription,
   gql,
   useMutation,
 } from '@apollo/client';
+import { WebSocketLink } from '@apollo/client/link/ws';
 
 import React, { Fragment } from 'react';
 import { Container, Row, Col, FormInput, Button } from 'shards-react';
 
+// For websocket subscribing to live message updates
+const link = new WebSocketLink({
+  uri: 'ws://192.168.0.120:3000/subscriptions',
+  options: {
+    reconnect: true,
+  },
+});
 const client = new ApolloClient({
+  link,
   uri: 'http://192.168.0.120:3000',
   cache: new InMemoryCache(),
 });
 
 const GET_MESSAGES = gql`
-  query Messages {
+  subscription Messages {
     messages {
       user
       content
@@ -31,7 +40,7 @@ const POST_MESSAGE = gql`
 `;
 
 const Messages = ({ user }) => {
-  const { data } = useQuery(GET_MESSAGES, { pollInterval: 500 });
+  const { data } = useSubscription(GET_MESSAGES);
 
   return data ? (
     <Fragment>
@@ -81,6 +90,7 @@ const Messages = ({ user }) => {
 
 const Chat = () => {
   const [postMessage] = useMutation(POST_MESSAGE);
+
   const onSend = () => {
     if (state.content.length > 0) {
       postMessage({ variables: state });
