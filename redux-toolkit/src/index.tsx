@@ -1,10 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-const rootElement = document.getElementById('app');
+// Custom imports
+import "./index.css";
+import App from "./App";
+import { store } from "./app/store";
+
+const rootElement = document.getElementById("app");
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-ReactDOM.createRoot(rootElement).render(<App />);
+ReactDOM.createRoot(rootElement).render(
+	<Provider store={store}>
+		<App />
+	</Provider>
+);
