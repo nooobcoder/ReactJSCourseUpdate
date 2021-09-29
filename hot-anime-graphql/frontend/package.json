@@ -9,7 +9,8 @@
     "eject": "react-scripts eject",
     "test": "jest",
     "type-check": "tsc",
-    "schema:download": "apollo service:download --endpoint=https://anilist.co/graphql ./src/app/graphql/graphql-schema.json"
+    "schema:download": "apollo service:download --endpoint=https://anilist.co/graphql ./src/app/graphql/graphql-schema.json",
+    "schema:generate-watch": "apollo codegen:generate --localSchemaFile=./src/app/graphql/graphql-schema.json --target=typescript --tagName=gql --watch"
   },
   "keywords": [
     "react",

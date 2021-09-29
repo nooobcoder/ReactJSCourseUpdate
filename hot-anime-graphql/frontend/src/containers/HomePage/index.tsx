@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import './App.css';
 
-const AppContainer = styled.div`
+interface IHomePageProps {}
+
+const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -10,6 +11,10 @@ const AppContainer = styled.div`
   align-items: center;
 `;
 
-const App = () => <AppContainer className="App">Hello World</AppContainer>;
+const HomePage = () => (
+  <Container>
+    <h1>Hot Anime</h1>
+  </Container>
+);
 
-export default App;
+export default HomePage;
