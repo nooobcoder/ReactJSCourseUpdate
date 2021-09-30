@@ -33,20 +33,6 @@ module.exports = {
     'import/no-cycle': 'off',
     semi: [1, 'always'],
     'linebreak-style': 'off',
-    'spellcheck/spell-checker': [
-      1,
-      {
-        comments: true,
-        strings: true,
-        identifiers: true,
-        ignoreRequire: true,
-        lang: 'en_US',
-        skipWords: ['dict', 'aff', 'hunspellchecker', 'hunspell', 'utils'],
-        skipIfMatch: ['http://[^s]*'],
-        skipWordIfMatch: ['^foobar.*$'],
-        minLength: 5,
-      },
-    ],
     'prettier/prettier': [
       'error',
       {

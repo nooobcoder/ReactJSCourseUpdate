@@ -1,7 +1,9 @@
+import './App.css';
+
 import { Layout, Space, Typography } from 'antd';
 import React, { FC } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import './App.css';
+
 import { Cryptocurrencies, Cryptodetails, Exchanges, Homepage, Navbar, News } from './components';
 
 const App: FC = () => {
