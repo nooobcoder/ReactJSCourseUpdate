@@ -13,7 +13,6 @@ const AppContainer = styled.div`
 
 const App = () => (
   <AppContainer className="App">
-    Hello World
     <HomePage />
   </AppContainer>
 );
