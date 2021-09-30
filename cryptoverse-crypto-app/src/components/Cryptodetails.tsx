@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Cryptodetails = () => {
-  return <div></div>;
+  return <div>Cryptodetails</div>;
 };
 
 export default Cryptodetails;

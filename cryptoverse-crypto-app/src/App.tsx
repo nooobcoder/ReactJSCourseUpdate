@@ -1,9 +1,7 @@
-import './App.css';
-
-import { Layout, Space, Typography } from 'antd';
+import { Layout } from 'antd';
 import React, { FC } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
-
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
 import { Cryptocurrencies, Cryptodetails, Exchanges, Homepage, Navbar, News } from './components';
 
 const App: FC = () => {
@@ -36,7 +34,6 @@ const App: FC = () => {
         </Layout>
       </div>
       <div className="footer"></div>
-      Cryptoverse
     </div>
   );
 };
