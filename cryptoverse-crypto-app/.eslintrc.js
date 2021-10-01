@@ -33,11 +33,5 @@ module.exports = {
     'import/no-cycle': 'off',
     semi: [1, 'always'],
     'linebreak-style': 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
   },
 };
