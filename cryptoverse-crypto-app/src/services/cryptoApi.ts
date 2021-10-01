@@ -6,12 +6,6 @@ export const cryptoAPIHeaders = {
 };
 const baseUrl = 'https://coinranking1.p.rapidapi.com';
 
-const options = {
-  method: 'GET',
-  url: baseUrl,
-  headers: cryptoAPIHeaders,
-};
-
 const createRequest = (url: string) => ({ url, headers: cryptoAPIHeaders });
 
 export const cryptoAPI = createApi({
