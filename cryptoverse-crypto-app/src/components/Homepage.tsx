@@ -1,10 +1,12 @@
 import { Col, Row, Statistic, Typography } from 'antd';
 import millify from 'millify';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Cryptocurrencies } from '.';
+
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Stats } from '../types/interfaces/coinsApi';
+import { Cryptocurrencies, News } from '.';
+
 const { Title } = Typography;
 
 const Homepage: FC = () => {
@@ -55,7 +57,7 @@ const Homepage: FC = () => {
           <Link to="/news">Show More</Link>
         </Title>
       </div>
-      {/* <News simplified /> */}
+      <News simplified />
     </>
   );
 };

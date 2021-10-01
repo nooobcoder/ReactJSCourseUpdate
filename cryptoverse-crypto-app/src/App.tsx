@@ -23,13 +23,13 @@ const App: FC = () => {
                 <Exchanges />
               </Route>
               <Route exact path="/cryptocurrencies">
-                <Cryptocurrencies />
+                <Cryptocurrencies simplified />
               </Route>
               <Route exact path="/crypto/:coinId">
                 <Cryptodetails />
               </Route>
               <Route exact path="/news">
-                <News />
+                <News simplified />
               </Route>
             </Switch>
           </div>
