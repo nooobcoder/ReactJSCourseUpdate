@@ -1,9 +1,10 @@
 import { Col, Row, Statistic, Typography } from 'antd';
 import millify from 'millify';
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
+import { Cryptocurrencies } from '.';
 import { useGetCryptosQuery } from '../services/cryptoApi';
 import { Stats } from '../types/interfaces/coinsApi';
-
 const { Title } = Typography;
 
 const Homepage: FC = () => {
@@ -37,6 +38,24 @@ const Homepage: FC = () => {
       ) : (
         <div>Loading</div>
       )}
+      <div className="home-heading-container">
+        <Title level={2} className="home-title">
+          Top 10 Cryptocurrencies in the World
+        </Title>
+        <Title level={3} className="show-more">
+          <Link to="/cryptocurrencies">Show More</Link>
+        </Title>
+      </div>
+      <Cryptocurrencies simplified />
+      <div className="home-heading-container">
+        <Title level={2} className="home-title">
+          Latest Crypto News
+        </Title>
+        <Title level={3} className="show-more">
+          <Link to="/news">Show More</Link>
+        </Title>
+      </div>
+      {/* <News simplified /> */}
     </>
   );
 };

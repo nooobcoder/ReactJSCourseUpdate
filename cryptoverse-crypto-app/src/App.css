@@ -19,6 +19,7 @@ a:hover {
 
 .app {
   display: flex;
+  flex-direction: row;
   overflow: hidden;
 }
 
@@ -44,7 +45,7 @@ a:hover {
 }
 
 .logo-container {
-  background-color: #001529;
+  background-color: cornflowerblue;
   display: flex;
   padding: 20px;
   align-items: center;

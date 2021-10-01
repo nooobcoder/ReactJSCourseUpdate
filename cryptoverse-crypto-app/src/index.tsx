@@ -10,10 +10,11 @@ const rootElement = document.getElementById('app');
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-ReactDOM.createRoot(rootElement).render(
+ReactDOM.render(
   <Router>
     <Provider store={store}>
       <App />
     </Provider>
   </Router>,
+  rootElement,
 );
