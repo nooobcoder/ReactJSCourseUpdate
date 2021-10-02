@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 
-const Exchanges = () => {
+const Exchanges: FC = () => {
   return <div>Exchanges</div>;
 };
 

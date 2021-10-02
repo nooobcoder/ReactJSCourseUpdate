@@ -6,7 +6,7 @@ import { newsAPI } from '../services/newsApi';
 
 const store = configureStore({
   reducer: { [cryptoAPI.reducerPath]: cryptoAPI.reducer, [newsAPI.reducerPath]: newsAPI.reducer },
-  middleware: (mWares: any) => mWares().concat(logger),
+  middleware: (mWares) => mWares().concat(logger),
 });
 
 export default store;

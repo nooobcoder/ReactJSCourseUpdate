@@ -1,6 +1,6 @@
-import React from 'react';
+import { FC } from 'react';
 
-const Cryptodetails = () => {
+const Cryptodetails: FC = () => {
   return <div>Cryptodetails</div>;
 };
 

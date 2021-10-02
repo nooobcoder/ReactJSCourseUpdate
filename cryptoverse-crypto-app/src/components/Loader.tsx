@@ -1,7 +1,7 @@
-import React from 'react';
 import { Spin } from 'antd';
+import { FC } from 'react';
 
-const Loader = () => (
+const Loader: FC = () => (
   <div className="loader">
     <Spin />
   </div>
