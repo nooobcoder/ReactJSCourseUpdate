@@ -9,7 +9,7 @@ const cors = require("cors");
 
 // Rate Limiting action
 const rateLimit = require("express-rate-limit");
-const limiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 5 });
+const limiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 20 });
 
 // Register the middleware for rate limitting action.
 app.use(limiter);
@@ -18,10 +18,15 @@ app.set("trust proxy", 1);
 // Enable CORS - https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 app.use(cors());
 
-app.use("/api", require("../routes/index").router);
+// Set static folder
+app.use(express.static("public"));
+
+app.use("/api", require("./routes/index").router);
 
 // Catch all unknown routes
-app.get("*", (_req, res) => res.sendFile("404.html", { root: __dirname }));
+app.get("*", (_req, res) =>
+	res.sendFile("./public/404.html", { root: __dirname })
+);
 
 // Last thing of Express - Do not put anything related to express below this
 app.listen(SERVER_PORT || 5000, () =>
