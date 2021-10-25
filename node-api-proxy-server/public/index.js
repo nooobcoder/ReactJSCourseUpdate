@@ -7,6 +7,14 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 
+// Rate Limiting action
+const rateLimit = require("express-rate-limit");
+const limiter = rateLimit({ windowMs: 10 * 60 * 1000, max: 5 });
+
+// Register the middleware for rate limitting action.
+app.use(limiter);
+app.set("trust proxy", 1);
+
 // Enable CORS - https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 app.use(cors());
 
