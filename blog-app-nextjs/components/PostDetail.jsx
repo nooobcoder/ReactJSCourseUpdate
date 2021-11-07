@@ -43,8 +43,10 @@ function PostDetail({ post }) {
             ))}
           </h4>
         );
-      case 'image':
+      case 'image': {
+        /* eslint-disable-next-line @next/next/no-img-element */
         return <img key={index} alt={obj.title} height={obj.height} width={obj.width} src={obj.src} />;
+      }
       default:
         return modifiedText;
     }
@@ -54,6 +56,7 @@ function PostDetail({ post }) {
     <>
       <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-8">
         <div className="relative overflow-hidden shadow-md mb-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={post.featuredImage.url}
             alt=""
@@ -63,6 +66,7 @@ function PostDetail({ post }) {
         <div className="px-4 lg:px-0">
           <div className="flex items-center mb-8 w-full">
             <div className="hidden md:flex items-center justify-center lg:mb-0 lg:w-auto mr-8 items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 alt={post.author.name}
                 height="30px"
