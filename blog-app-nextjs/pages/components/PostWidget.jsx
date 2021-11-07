@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PostWidget(props) {
+function PostWidget() {
   return (
     <div>Post Widget</div>
   );

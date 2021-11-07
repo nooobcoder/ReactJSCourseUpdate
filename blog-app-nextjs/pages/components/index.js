@@ -1,5 +1,7 @@
 import Categories from './Categories';
-import PostWidget from './PostWidget';
+import Header from './Header';
+import Layout from './Layout';
 import PostCard from './PostCard';
+import PostWidget from './PostWidget';
 
-export { Categories, PostWidget, PostCard };
+export { Categories, Header, Layout,PostCard, PostWidget };
