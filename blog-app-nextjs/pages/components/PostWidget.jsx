@@ -10,11 +10,9 @@ function PostWidget({ categories, slug }) {
   const [relatedPosts, setRelatedPosts] = useState([]);
 
   useEffect(() => {
-    if (slug) {
-      getSimilarPosts(categories, slug).then((result) => setRelatedPosts(result));
-    } else {
-      getRecentPosts().then((result) => setRelatedPosts(result));
-    }
+    const setPosts = async () =>
+      setRelatedPosts(slug ? await getSimilarPosts(categories, slug) : await getRecentPosts());
+    setPosts();
   }, [slug, categories]);
   return (
     <div className={'bg-white shadow-lg rounded-lg p-8 mb-8'}>
