@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
+import { Categories, PostCard, PostWidget } from '../components';
 import { getPosts } from '../services';
-import { Categories, PostCard, PostWidget } from './components';
 
 export default function Home({ posts }) {
   return (
