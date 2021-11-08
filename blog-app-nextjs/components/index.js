@@ -5,6 +5,7 @@ import CommentsForm from './CommentsForm';
 import FeaturedPostCard from './FeaturedPostCard';
 import Header from './Header';
 import Layout from './Layout';
+import Loader from './Loader';
 import PostCard from './PostCard';
 import PostDetail from './PostDetail';
 import PostWidget from './PostWidget';
@@ -17,6 +18,7 @@ export {
   FeaturedPostCard,
   Header,
   Layout,
+  Loader,
   PostCard,
   PostDetail,
   PostWidget,
