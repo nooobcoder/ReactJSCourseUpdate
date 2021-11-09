@@ -14,7 +14,7 @@ module.exports = {
   plugins: ['react', 'simple-import-sort'],
   rules: {
     'no-console': ['warn', { allow: ['warn', 'error'] }],
-    'simple-import-sort/imports': 'warn',
     'simple-import-sort/exports': 'warn',
+    'simple-import-sort/imports': 'warn',
   },
 };
