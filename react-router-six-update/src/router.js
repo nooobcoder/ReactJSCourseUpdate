@@ -1,0 +1,52 @@
+import React from "react";
+import { Route, Routes } from "react-router";
+import Dashboard from "./dashboard/Dashboard";
+import DashboardDefaultContent from "./dashboard/dashboard-default-content";
+import Inbox from "./dashboard/inbox";
+import SettingsAndPrivacy from "./dashboard/settings-and-privacy";
+import GameDetails from "./pages/game/GameDetails";
+import Games from "./pages/game/Games";
+import LandingPage from "./pages/LandingPage";
+import NotFound from "./pages/NotFound";
+
+/*Routes is used to be Switch*/
+const Router = () => {
+	/* nesting routes*/
+	return (
+		<Routes>
+			<Route index element={<LandingPage />} />
+			<Route path="games" element={<Games />} />
+			<Route path="game-details/:id" element={<GameDetails />} />
+			<Route path="dashboard" element={<Dashboard />}>
+				<Route index element={<DashboardDefaultContent />} />
+				<Route path="inbox" element={<Inbox />} />
+				<Route
+					path="settings-and-privacy"
+					element={<SettingsAndPrivacy />}
+				/>
+				<Route path="*" element={<NotFound />} />
+			</Route>
+			<Route path="*" element={<NotFound />} />
+		</Routes>
+	);
+
+	/* object-based routes
+  return useRoutes([
+    { path: "/", element: <LandingPage /> },
+    { path: "games", element: <Games /> },
+    { path: "game-details/:id", element: <GameDetails /> },
+    {
+      path: "dashboard",
+      element: <Dashboard />,
+      children: [
+        { path: "/", element: <DashboardDefaultContent /> },
+        { path: "inbox", element: <Inbox /> },
+        { path: "settings-and-privacy", element: <SettingsAndPrivacy /> },
+        { path: "*", element: <NotFound /> },
+      ],
+    },
+    { path: "*", element: <NotFound /> },
+  ]);
+*/
+};
+export default Router;
