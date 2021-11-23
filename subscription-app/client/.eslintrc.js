@@ -33,6 +33,7 @@ module.exports = {
       1,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
+    'react/react-in-jsx-scope': 'off',
   },
   parserOptions: {
     project: './tsconfig.json',
