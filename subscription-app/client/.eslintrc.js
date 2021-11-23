@@ -1,46 +1,40 @@
 module.exports = {
-	extends: [
-		"airbnb-typescript",
-		"airbnb/hooks",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:jest/recommended",
-		"plugin:prettier/recommended",
-	],
-	plugins: ["react", "@typescript-eslint", "jest", "simple-import-sort"],
-	env: {
-		browser: true,
-		es6: true,
-		jest: true,
-	},
-	globals: {
-		Atomics: "readonly",
-		SharedArrayBuffer: "readonly",
-	},
-	parser: "@typescript-eslint/parser",
-	parserOptions: {
-		ecmaFeatures: {
-			jsx: true,
-		},
-		ecmaVersion: 2018,
-		sourceType: "module",
-		project: "./tsconfig.json",
-	},
-	rules: {
-		"linebreak-style": "off",
-		"simple-import-sort/imports": "warn",
-		"simple-import-sort/exports": "warn",
-		"prettier/prettier": [
-			"error",
-			{
-				endOfLine: "auto",
-			},
-		],
-		"@typescript-eslint/camelcase": "off",
-	},
-
-	settings: {
-		jest: {
-			version: 26,
-		},
-	},
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: [
+    'plugin:react/recommended',
+    'airbnb',
+    'plugin:jsx-a11y/recommended',
+    'prettier',
+    'airbnb-typescript',
+  ],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 13,
+    sourceType: 'module',
+  },
+  plugins: ['react', 'jsx-a11y', 'prettier', '@typescript-eslint'],
+  rules: {
+    'react/function-component-definition': [
+      0,
+      {
+        namedComponents: 'function-declaration',
+      },
+    ],
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    semi: 0,
+    'react/jsx-filename-extension': [
+      1,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
+  },
+  parserOptions: {
+    project: './tsconfig.json',
+  },
 };
