@@ -28,7 +28,6 @@ const Document = ({ children, title }) => {
 				{children}
 				{process.env.NODE_ENV === "development" ? <LiveReload /> : null}
 			</body>
-			<h1>My App</h1>
 		</html>
 	);
 };
@@ -50,3 +49,15 @@ const Layout = ({ children }) => (
 		<div>{children}</div>
 	</Fragment>
 );
+
+export const ErrorBoundary = ({ error }) => {
+	console.error(error);
+	return (
+		<Document>
+			<Layout>
+				<h1> Oh Snap! An error occured.</h1>
+				<p>{error.message}</p>
+			</Layout>
+		</Document>
+	);
+};
