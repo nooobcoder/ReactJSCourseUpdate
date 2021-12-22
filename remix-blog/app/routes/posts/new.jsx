@@ -1,4 +1,5 @@
 import { Link, redirect } from "remix";
+import db from "~/utils/db.server";
 
 // https://remix.run/docs/en/v1/api/conventions#action
 export const action = async ({ request }) => {
@@ -9,8 +10,9 @@ export const action = async ({ request }) => {
 	const fields = { title, body };
 
 	// TODO: Submit data to database
+	const post = await db.post.create({ data: fields });
 
-	return redirect("/posts");
+	return redirect(`/posts/${post.id}`);
 };
 
 const NewPost = () => {
