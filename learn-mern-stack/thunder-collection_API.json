@@ -1,0 +1,89 @@
+{
+	"client": "Thunder Client",
+	"collectionName": "API",
+	"dateExported": "2022-02-17T11:07:04.894Z",
+	"version": "1.1",
+	"folders": [],
+	"requests": [
+		{
+			"containerId": "",
+			"sortNum": 10000,
+			"headers": [
+				{ "name": "Accept", "value": "*/*" },
+				{
+					"name": "User-Agent",
+					"value": "Thunder Client (https://www.thunderclient.com)"
+				}
+			],
+			"colId": "cd07310b-2422-4b50-ab6e-8f3f49b51c5d",
+			"name": "GET goals",
+			"url": "{{HOST}}:5000/api/goals",
+			"method": "GET",
+			"modified": "2022-02-17T07:05:30.720Z",
+			"created": "2022-02-17T07:00:21.522Z",
+			"_id": "718b506a-f43a-431d-bfeb-580088fbbc05",
+			"params": [],
+			"tests": []
+		},
+		{
+			"containerId": "",
+			"sortNum": 20000,
+			"headers": [
+				{ "name": "Accept", "value": "*/*" },
+				{
+					"name": "User-Agent",
+					"value": "Thunder Client (https://www.thunderclient.com)"
+				}
+			],
+			"colId": "cd07310b-2422-4b50-ab6e-8f3f49b51c5d",
+			"name": "POST goals",
+			"url": "{{HOST}}:5000/api/goals",
+			"method": "POST",
+			"modified": "2022-02-17T07:09:18.134Z",
+			"created": "2022-02-17T07:08:54.602Z",
+			"_id": "ead778e3-2398-4997-8db7-ac88d06868d1",
+			"params": [],
+			"tests": []
+		},
+		{
+			"containerId": "",
+			"sortNum": 30000,
+			"headers": [
+				{ "name": "Accept", "value": "*/*" },
+				{
+					"name": "User-Agent",
+					"value": "Thunder Client (https://www.thunderclient.com)"
+				}
+			],
+			"colId": "cd07310b-2422-4b50-ab6e-8f3f49b51c5d",
+			"name": "UPDATE goals",
+			"url": "{{HOST}}:5000/api/goals/1234623",
+			"method": "PUT",
+			"modified": "2022-02-17T07:09:57.507Z",
+			"created": "2022-02-17T07:09:32.859Z",
+			"_id": "8ee3e526-676c-4301-aa4d-61e6ec7e6ea5",
+			"params": [],
+			"tests": []
+		},
+		{
+			"containerId": "",
+			"sortNum": 40000,
+			"headers": [
+				{ "name": "Accept", "value": "*/*" },
+				{
+					"name": "User-Agent",
+					"value": "Thunder Client (https://www.thunderclient.com)"
+				}
+			],
+			"colId": "cd07310b-2422-4b50-ab6e-8f3f49b51c5d",
+			"name": "DELETE goals ",
+			"url": "{{HOST}}:5000/api/goals/1234623",
+			"method": "DELETE",
+			"modified": "2022-02-17T07:10:23.593Z",
+			"created": "2022-02-17T07:10:02.470Z",
+			"_id": "533f129a-6c94-4134-bf68-cb935103d89f",
+			"params": [],
+			"tests": []
+		}
+	]
+}

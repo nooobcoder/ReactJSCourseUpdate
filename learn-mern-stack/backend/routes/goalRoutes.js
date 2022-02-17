@@ -8,12 +8,8 @@ const {
 	deleteGoals,
 } = require("../controllers/goalController");
 
-router.get("/", getGoals);
-
-router.post("/", createGoals);
-
-router.put("/:id", updateGoals);
-
-router.delete("/:id", deleteGoals);
+// A better syntax
+router.route("/").get(getGoals).post(createGoals);
+router.route("/:id").put(updateGoals).delete(deleteGoals);
 
 module.exports = router;

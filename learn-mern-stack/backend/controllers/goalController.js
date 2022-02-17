@@ -1,3 +1,6 @@
+const expressAsyncHandler = require("express-async-handler");
+const asyncHandler = require("express-async-handler");
+
 /**
  * @desc    Get goals
  * @route   GET /api/goals
@@ -6,30 +9,25 @@
  * @param {*} response
  * @returns
  */
-const getGoals = (request, response) =>
-	response.status(200).json({ message: "Get Goals" });
+const getGoals = expressAsyncHandler(async (request, response) =>
+	response.status(200).json({ message: "Get Goals" })
+);
 
 /**
- * @desc    Get goals
- * @route   POST /api/goals
- * @access  Private
- * @param {*} request
- * @param {*} response
- * @returns
- */
-const createGoals = (request, response) =>
-	response.status(200).json({ message: "Get Goals" });
-
-/**
- * @desc    Set goals
+ * @desc    Create goals
  * @route   POST /api/goals/
  * @access  Private
  * @param {params} request
  * @param {*} response
  * @returns
  */
-const setGoal = (request, response) =>
-	response.status(200).json({ message: "Get Goals" });
+const createGoals = expressAsyncHandler(async (request, response) => {
+	if (!request.body.text) {
+		response.status(400);
+		throw new Error("Please add a text field.");
+	}
+	response.status(200).json({ message: "Create Goals" });
+});
 
 /**
  * @desc    Update goals
@@ -39,18 +37,20 @@ const setGoal = (request, response) =>
  * @param {*} response
  * @returns
  */
-const updateGoals = (request, response) =>
-	response.status(200).json({ message: "Get Goals" });
+const updateGoals = expressAsyncHandler(async (request, response) =>
+	response.status(200).json({ message: "Update Goals" })
+);
 
 /**
  * @desc    Delete goals
- * @route   DELETE /api/goals
+ * @route   DELETE /api/goals/:id
  * @access  Private
  * @param {*} request
  * @param {*} response
  * @returns
  */
-const deleteGoals = (request, response) =>
-	response.status(200).json({ message: "Get Goals" });
+const deleteGoals = expressAsyncHandler(async (request, response) =>
+	response.status(200).json({ message: "Delete Goals" })
+);
 
 module.exports = { getGoals, createGoals, updateGoals, deleteGoals };
