@@ -1,9 +1,14 @@
 // Connection String: mongodb://admin:adminadmin@127.0.0.1:27017/?authSource=admin&readPreference=primary&ssl=false
 
 const express = require("express");
-const dotenv = require("dotenv").config();
+require("dotenv").config({ path: "./.env.local" });
+
+const colors = require("colors");
 const { errorHandler } = require("./middleware/errorMiddleware");
+const connectDB = require("./config/db");
 const PORT = process.env.PORT || 5000;
+
+connectDB();
 
 const app = express();
 app.use(express.json());
