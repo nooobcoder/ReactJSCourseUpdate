@@ -42,9 +42,20 @@ const createGoals = expressAsyncHandler(async (request, response) => {
  * @param {*} response
  * @returns
  */
-const updateGoals = expressAsyncHandler(async (request, response) =>
-	response.status(200).json({ message: "Update Goals" })
-);
+const updateGoals = expressAsyncHandler(async (request, response) => {
+	const goal = await Goal.findById(request.params.id);
+	if (!goal) {
+		response.status(400);
+		throw new Error("Goal not found");
+	}
+	const updatedGoal = await Goal.findByIdAndUpdate(
+		request.params.id,
+		request.body,
+		{ new: true }
+	);
+
+	response.status(200).json(updatedGoal);
+});
 
 /**
  * @desc    Delete goals
@@ -54,8 +65,14 @@ const updateGoals = expressAsyncHandler(async (request, response) =>
  * @param {*} response
  * @returns
  */
-const deleteGoals = expressAsyncHandler(async (request, response) =>
-	response.status(200).json({ message: "Delete Goals" })
+const deleteGoals = expressAsyncHandler(async (request, response) =>{
+		const goal = await Goal.findById(request.params.id);
+		if (!goal) {
+			response.status(400);
+			throw new Error("Goal not found");
+		}
+		await goal.remove()
+	response.status(200).json({ id:request.params.id })}
 );
 
 module.exports = { getGoals, createGoals, updateGoals, deleteGoals };
