@@ -7,7 +7,7 @@ const connectDB = async () => {
 			`${process.env.MONGODB_CONNECT_STRING}`,
 			{ useNewUrlParser: true }
 		);
-		console.log(`MONGODB CONNECTED: ${conn.connection.host}`.cyan.underline);
+		console.log(`MONGODB CONNECTED: ${conn.connection.host}`.yellow.underline);
 	} catch (error) {
 		console.log(error);
 		process.exit(1);
