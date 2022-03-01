@@ -1,6 +1,25 @@
 version: "3.1"
 
 services:
+  hoppscotch:
+    volumes:
+      - "./hoppscotch/.hoppscotch:/app/.hoppscotch"
+      - "./hoppscotch/assets:/app/assets"
+      - "./hoppscotch/directives:/app/directives"
+      - "./hoppscotch/layouts:/app/layouts"
+      - "./hoppscotch/middleware:/app/middleware"
+      - "./hoppscotch/pages:/app/pages"
+      - "./hoppscotch/plugins:/app/plugins"
+      - "./hoppscotch/static:/app/static"
+      - "./hoppscotch/store:/app/store"
+      - "./hoppscotch/components:/app/components"
+      - "./hoppscotch/helpers:/app/helpers"
+    ports:
+      - "1000:3000"
+    environment:
+      HOST: 0.0.0.0
+    image: hoppscotch/hoppscotch:latest
+
   mongodb:
     image: mongo:latest
     restart: always
