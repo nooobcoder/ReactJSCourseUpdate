@@ -21,7 +21,12 @@ function App() {
 
 	return (
 		<div className="App">
-			<h2>Input random text here 🔽</h2>
+			<h2>
+				Input random text here
+				<span role="img" aria-label="emoji">
+					🔽
+				</span>
+			</h2>
 			<input
 				type={"text"}
 				defaultValue={inputVal}
