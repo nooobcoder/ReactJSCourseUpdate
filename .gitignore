@@ -13,3 +13,7 @@ build/
 .env.test.local
 .env.production.local
 remix-blog/prisma/dev.db
+
+# Supabase
+**/supabase/.branches
+**/supabase/.temp

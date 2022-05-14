@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@supabase/supabase-js": "^1.28.5",
-    "express-async-handler": "^1.2.0"
+    "@passageidentity/passage-elements": "^0.1.0-beta.39"
   }
 }
