@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "dev:stepzen": "stepzen start --dir=./stepzen --port=5000"
   },
   "dependencies": {
     "@apollo/client": "^3.6.4",
