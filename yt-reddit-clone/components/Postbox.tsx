@@ -3,7 +3,8 @@ import { LinkIcon, PhotographIcon } from '@heroicons/react/outline'
 import { useSession } from 'next-auth/react'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
-import { toast } from "react-hot-toast"
+import toast from "react-hot-toast"
+
 import { client } from '../apollo-client'
 import { ADD_POST, ADD_SUBREDDIT } from '../graphql/mutations'
 import { GET_SUBREDDIT_BY_TOPIC } from '../graphql/queries'
@@ -34,7 +35,6 @@ function Postbox() {
 
   const onSubmit = handleSubmit(async (formData) => {
     const notification = toast.loading('Posting...');
-    console.log(process.env.NEXT_PUBLIC_STEPZEN_API_KEY)
     try {
       // Query for the subreddit topic
       const {
@@ -103,13 +103,17 @@ function Postbox() {
       setValue('postImage', '')
       setValue('subreddit', '')
 
-      toast.success('New post created!', {id:notification})
+      toast.success('New post created!', {
+        id: notification
+      })
     } catch (e) {
       // Print the error trace
       console.error(e)
 
       // Toast an error
-      toast.error('Error creating post!', {id:notification})
+      toast.error('Error creating post!', {
+        id: notification
+      })
     }
   })
 
