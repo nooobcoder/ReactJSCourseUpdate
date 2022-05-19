@@ -4,9 +4,15 @@ import { SessionProvider } from 'next-auth/react'
 import Header from '../components/Header'
 import { ApolloProvider } from '@apollo/client'
 import { client } from '../apollo-client'
-import Toaster from "react-hot-toast"
+import {Toaster} from "react-hot-toast"
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  // Remove all console.logs in production
+  if (process.env.NODE_ENV === 'production') {
+    console.log = () => { }
+    console.info = () => { }
+  }
+
   return (
     <ApolloProvider client={client}>
       <SessionProvider session={session}>
