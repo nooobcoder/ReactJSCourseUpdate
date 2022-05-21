@@ -5,7 +5,7 @@ import Postbox from '../components/Postbox'
 const Home: NextPage = () => {
   return (
     // Tailwind space around
-    <div className="">
+    <div className="my-7 mx-auto max-w-5xl">
       <Head>
         <title>Reddit 2.0 - nooobcoder</title>
       </Head>
