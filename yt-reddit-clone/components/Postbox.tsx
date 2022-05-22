@@ -3,16 +3,18 @@ import { LinkIcon, PhotographIcon } from '@heroicons/react/outline'
 import { useSession } from 'next-auth/react'
 import * as React from 'react'
 import { useForm } from 'react-hook-form'
-import toast from "react-hot-toast"
+import toast from 'react-hot-toast'
 
 import { client } from '../apollo-client'
 import { ADD_POST, ADD_SUBREDDIT } from '../graphql/mutations'
-import { GET_SUBREDDIT_BY_TOPIC } from '../graphql/queries'
+import { GET_ALL_POSTS, GET_SUBREDDIT_BY_TOPIC } from '../graphql/queries'
 import Avatar from './Avatar'
 
 function Postbox() {
   const [imageBoxOpen, setImageBoxOpen] = React.useState(false)
-  const [addPost] = useMutation(ADD_POST)
+  const [addPost] = useMutation(ADD_POST, {
+    refetchQueries: [GET_ALL_POSTS, 'getPostList'],
+  })
   const [addSubreddit] = useMutation(ADD_SUBREDDIT)
 
   // Define FormData type
@@ -34,7 +36,7 @@ function Postbox() {
   } = useForm<FormData>()
 
   const onSubmit = handleSubmit(async (formData) => {
-    const notification = toast.loading('Posting...');
+    const notification = toast.loading('Posting...')
     try {
       // Query for the subreddit topic
       const {
@@ -43,7 +45,7 @@ function Postbox() {
         query: GET_SUBREDDIT_BY_TOPIC,
         variables: { topic: formData.subreddit },
       })
-      
+
       console.log(getSubredditListByTopic)
       const subredditExists = getSubredditListByTopic.length > 0
 
@@ -104,7 +106,7 @@ function Postbox() {
       setValue('subreddit', '')
 
       toast.success('New post created!', {
-        id: notification
+        id: notification,
       })
     } catch (e) {
       // Print the error trace
@@ -112,14 +114,14 @@ function Postbox() {
 
       // Toast an error
       toast.error('Error creating post!', {
-        id: notification
+        id: notification,
       })
     }
   })
 
   return (
     <form
-      className="sticky top-16 z-50 rounded-md border border-gray-300 bg-white p-2"
+      className=" top-16 z-50 rounded-md border border-gray-300 bg-white p-2"
       onSubmit={onSubmit}
     >
       <div className="flex items-center space-x-3">
