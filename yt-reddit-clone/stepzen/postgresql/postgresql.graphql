@@ -51,7 +51,7 @@ type Vote {
   created_at: DateTime
   id: ID!
   post_id: ID
-  upvote: Int
+  upvote: Boolean
   username: String
 }
 
@@ -114,6 +114,22 @@ type Query {
       """
       configuration: "postgresql_config"
     )
+  getPostListByTopic(topic: String!): [Post]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      SELECT *, "post".id as id FROM "post" JOIN "subreddit" ON "subreddit"."id" = "post"."subreddit_id" WHERE "subreddit"."topic" = $1 ORDER BY "post"."created_at" DESC
+      """
+      configuration: "postgresql_config"
+    )
+  getPostListByPostId(post_id: ID!): Post
+    @dbquery(
+      type: "postgresql"
+      query: """
+      SELECT * FROM "post" WHERE "post"."id" = $1
+      """
+      configuration: "postgresql_config"
+    )
   getProfilesList: [Profiles]
     @dbquery(
       type: "postgresql"
@@ -139,6 +155,14 @@ type Query {
       type: "postgresql"
       query: """
       SELECT * FROM "subreddit" where "topic" = $1
+      """
+      configuration: "postgresql_config"
+    )
+  getSubredditListWithLimit(limit: Int!): [Subreddit]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      SELECT * FROM "subreddit" limit $1
       """
       configuration: "postgresql_config"
     )
@@ -173,6 +197,20 @@ type Mutation {
     @dbquery(
       type: "postgresql"
       table: "post"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  insertComment(post_id: ID!, text: String!, username: String!): Comment
+    @dbquery(
+      type: "postgresql"
+      table: "comment"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  insertVote(post_id: ID!, username: String!, upvote: Boolean!): Vote
+    @dbquery(
+      type: "postgresql"
+      table: "vote"
       dml: INSERT
       configuration: "postgresql_config"
     )
