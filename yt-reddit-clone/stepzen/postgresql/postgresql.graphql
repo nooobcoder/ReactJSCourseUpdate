@@ -51,7 +51,7 @@ type Vote {
   created_at: DateTime
   id: ID!
   post_id: ID
-  upvote: Int
+  upvote: Boolean
   username: String
 }
 
@@ -158,6 +158,14 @@ type Query {
       """
       configuration: "postgresql_config"
     )
+  getSubredditListWithLimit(limit: Int!): [Subreddit]
+    @dbquery(
+      type: "postgresql"
+      query: """
+      SELECT * FROM "subreddit" limit $1
+      """
+      configuration: "postgresql_config"
+    )
   getVoteList: [Vote]
     @dbquery(
       type: "postgresql"
@@ -196,6 +204,13 @@ type Mutation {
     @dbquery(
       type: "postgresql"
       table: "comment"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  insertVote(post_id: ID!, username: String!, upvote: Boolean!): Vote
+    @dbquery(
+      type: "postgresql"
+      table: "vote"
       dml: INSERT
       configuration: "postgresql_config"
     )
