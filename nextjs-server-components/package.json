@@ -1,0 +1,13 @@
+{
+	"scripts": {
+		"dev": "PORT=4848 yarn next dev",
+		"build": "yarn next build",
+		"start": "PORT=4848 yarn next start"
+	},
+	"dependencies": {
+		"ms": "2.1.3",
+		"next": "^12.1.7-canary.10",
+		"react": "^18.1.0",
+		"react-dom": "^18.1.0"
+	}
+}
