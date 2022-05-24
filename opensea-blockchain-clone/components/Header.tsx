@@ -4,9 +4,10 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { CgProfile } from 'react-icons/cg'
 import { MdOutlineAccountBalanceWallet } from 'react-icons/md'
 import openseaLogo from '../assets/opensea.png'
+import { useDisconnect } from '@thirdweb-dev/react'
 
 const style = {
-  wrapper: `bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex `,
+  wrapper: `bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex`,
   logoContainer: `flex items-center cursor-pointer`,
   logoText: ` ml-[0.8rem] text-white font-semibold text-2xl`,
   searchBar: `flex flex-1 mx-[0.8rem] w-max-[520px] items-center bg-[#363840] rounded-[0.8rem] hover:bg-[#4c505c]`,
@@ -18,6 +19,8 @@ const style = {
 }
 
 function Header() {
+  const disconnectWallet = useDisconnect()
+
   return (
     <div className={style.wrapper}>
       <Link href="/">
@@ -43,7 +46,7 @@ function Header() {
         <div className={style.headerItem}> Resources </div>
         <div className={style.headerItem}> Create </div>
         <div className={style.headerIcon}>
-          <CgProfile />
+          <CgProfile onClick={disconnectWallet} />
         </div>
         <div className={style.headerIcon}>
           <MdOutlineAccountBalanceWallet />

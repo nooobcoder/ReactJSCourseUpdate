@@ -1,24 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
-import { ThirdwebProvider } from '@3rdweb/react'
+import { ThirdwebProvider } from '@thirdweb-dev/react'
 
+import '../styles/globals.css'
+
+/*
+ * The chain ID 4 represens the Rinkeby testnet.
+ * The `injected` connecter is a web3 connection method used by Metamask.
+ */
 function MyApp({ Component, pageProps }: any) {
-  const supportedChainIds = [80001]
-  const connectors = {
-    injected: {},
-    walletconnect: {},
-    walletlink: {
-      appName: 'thirdweb - demo',
-      url: 'https://thirdweb.com',
-      darkMode: false,
-    },
-  }
+  const desiredChainId = 4
 
   return (
-    <ThirdwebProvider
-      connectors={connectors}
-      supportedChainIds={supportedChainIds}
-    >
+    <ThirdwebProvider desiredChainId={desiredChainId}>
       <Component {...pageProps} />
     </ThirdwebProvider>
   )
