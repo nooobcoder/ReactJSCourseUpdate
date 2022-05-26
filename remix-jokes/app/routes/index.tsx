@@ -10,7 +10,7 @@ export default function IndexRoute() {
 		<div className="container">
 			<div className="content">
 				<h1>
-					Remix{" "}
+					Remix
 					<span>
 						Jokes! by <a href="https://remix.run">remix.run 💿</a>
 					</span>
