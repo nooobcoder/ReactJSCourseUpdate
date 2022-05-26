@@ -1,5 +1,5 @@
 import { json } from "@remix-run/node";
-import { useLoaderData, Link } from "@remix-run/react";
+import { Link, useLoaderData } from "@remix-run/react";
 import { getPosts } from "~/models/post.server";
 
 // Declare a interface for posts
@@ -37,6 +37,7 @@ export const loader = async () => {
 
 const Posts = () => {
   const { posts } = useLoaderData<LoaderData>(); // Use the useLoaderData hook to get the posts from the loader
+  console.log(posts);
 
   return (
     <main>
