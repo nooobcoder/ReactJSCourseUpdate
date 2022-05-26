@@ -84,6 +84,7 @@ function JokesRoute() {
 					<div className="jokes-outlet">
 						<Outlet />
 					</div>
+					<Link to="~/jokes.rss">RSS</Link>
 				</div>
 			</main>
 		</div>
