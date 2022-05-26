@@ -5,6 +5,7 @@
 	"scripts": {
 		"build": "remix build",
 		"dev": "remix dev",
+		"dev:studio": "prisma studio --port 3333",
 		"seed": "node --require  esbuild-register prisma/seed.ts",
 		"start": "remix-serve build"
 	},

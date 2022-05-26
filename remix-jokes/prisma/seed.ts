@@ -44,11 +44,11 @@ const getJokes = () => [
 
 const seed = async () => {
 	// Hash a password
-	const password = await bcrypt.hash("ankurpaul", 10);
+	const passwordHash = await bcrypt.hash("ankurpaul", 10);
 	const kody = await db.user.create({
 		data: {
 			username: "ankurpaul",
-			passwordHash: password,
+			passwordHash,
 		},
 	});
 

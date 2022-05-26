@@ -1,14 +1,24 @@
 import { json } from "@remix-run/node";
+import { createUserSession, login, register } from "../utils/session.server";
 import { useActionData, Link, useSearchParams } from "@remix-run/react";
 
-import type { ActionFunction, LinksFunction } from "@remix-run/node";
+import type {
+	ActionFunction,
+	LinksFunction,
+	MetaFunction,
+} from "@remix-run/node";
 
 import { db } from "~/utils/db.server";
 import stylesUrl from "~/styles/login.css";
 
-export const links: LinksFunction = () => {
+const links: LinksFunction = () => {
 	return [{ rel: "stylesheet", href: stylesUrl }];
 };
+
+const meta: MetaFunction = () => ({
+	title: "Remix Jokes | Login",
+	description: "Login to submit your own jokes to Remix Jokes!",
+});
 
 function validateUsername(username: unknown) {
 	if (typeof username !== "string" || username.length < 3) {
@@ -46,7 +56,7 @@ type ActionData = {
 
 const badRequest = (data: ActionData) => json(data, { status: 400 });
 
-export const action: ActionFunction = async ({ request }) => {
+const action: ActionFunction = async ({ request }) => {
 	const form = await request.formData();
 	const loginType = form.get("loginType");
 	const username = form.get("username");
@@ -73,13 +83,16 @@ export const action: ActionFunction = async ({ request }) => {
 
 	switch (loginType) {
 		case "login": {
-			// login to get the user
-			// if there's no user, return the fields and a formError
-			// if there is a user, create their session and redirect to /jokes
-			return badRequest({
-				fields,
-				formError: "Not implemented",
-			});
+			const user = await login({ username, password });
+			console.table({ user }, ["id", "username"]);
+
+			if (!user) {
+				return badRequest({
+					fields,
+					formError: `Invalid username or password.`,
+				});
+			}
+			return createUserSession(user.id, redirectTo);
 		}
 		case "register": {
 			const userExists = await db.user.findFirst({
@@ -91,12 +104,14 @@ export const action: ActionFunction = async ({ request }) => {
 					formError: `User with username ${username} already exists`,
 				});
 			}
-			// create the user
-			// create their session and redirect to /jokes
-			return badRequest({
-				fields,
-				formError: "Not implemented",
-			});
+			const user = await register({ username, password });
+			if (!user) {
+				return badRequest({
+					fields,
+					formError: `Something went wrong trying to create a new user.`,
+				});
+			}
+			return createUserSession(user.id, redirectTo);
 		}
 		default: {
 			return badRequest({
@@ -224,3 +239,5 @@ export default function Login() {
 		</div>
 	);
 }
+
+export { action, links, meta };
