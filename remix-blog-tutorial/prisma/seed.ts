@@ -45,7 +45,7 @@ async function seed() {
       slug: "my-first-post",
       title: "My First Post",
       markdown: `
-# This is my first post
+# *This is my first post*
 
 Isn't it great?
     `.trim(),

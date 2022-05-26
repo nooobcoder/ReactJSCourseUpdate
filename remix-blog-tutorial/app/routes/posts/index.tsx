@@ -43,6 +43,9 @@ const Posts = () => {
     <main>
       <h1>Posts</h1>
       {/* Render object as html */}
+      <Link to="admin" className="text-red-600 underline">
+        Admin
+      </Link>
       <ul>
         {posts.map((post: Post) => (
           <li key={post.slug}>

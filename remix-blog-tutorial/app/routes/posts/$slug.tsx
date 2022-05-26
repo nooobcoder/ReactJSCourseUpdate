@@ -2,11 +2,12 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import invariant from "tiny-invariant";
+import { marked } from "marked";
 
 import type { Post } from "~/models/post.server";
 import { getPost } from "~/models/post.server";
 
-type LoaderData = { post: Post };
+type LoaderData = { post: Post; html: string };
 
 const loader: LoaderFunction = async ({ params }) => {
   invariant(params.slug, `params.slug is required`);
@@ -14,11 +15,12 @@ const loader: LoaderFunction = async ({ params }) => {
   const post = await getPost(params.slug);
   invariant(post, `Post not found: ${params.slug}`);
 
-  return json<LoaderData>({ post });
+  const html = marked(post.markdown);
+  return json<LoaderData>({ post, html });
 };
 
 const PostSlug = () => {
-  const { post } = useLoaderData<LoaderData>();
+  const { post, html } = useLoaderData<LoaderData>();
 
   return (
     <main className="mx-auto mt-3 max-w-4xl">
@@ -26,6 +28,7 @@ const PostSlug = () => {
         Back
       </Link>
       <h1 className="my-6 border-b-2 text-center text-3xl">{post.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
     </main>
   );
 };
