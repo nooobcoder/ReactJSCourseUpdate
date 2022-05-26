@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
 
 const db = new PrismaClient();
 
@@ -42,7 +43,20 @@ const getJokes = () => [
 ];
 
 const seed = async () => {
-	await Promise.all(getJokes().map((joke) => db.joke.create({ data: joke })));
+	// Hash a password
+	const password = await bcrypt.hash("ankurpaul", 10);
+	const kody = await db.user.create({
+		data: {
+			username: "ankurpaul",
+			passwordHash: password,
+		},
+	});
+
+	await Promise.all(
+		getJokes().map((joke) =>
+			db.joke.create({ data: { jokesterId: kody.id, ...joke } })
+		)
+	);
 };
 
 seed();
