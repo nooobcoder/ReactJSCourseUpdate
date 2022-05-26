@@ -1,15 +1,24 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
+import invariant from "tiny-invariant";
+
+import type { Post } from "~/models/post.server";
 import { getPost } from "~/models/post.server";
 
+type LoaderData = { post: Post };
+
 const loader: LoaderFunction = async ({ params }) => {
-  const post = await getPost(params.slug!);
-  return json({ post });
+  invariant(params.slug, `params.slug is required`);
+
+  const post = await getPost(params.slug);
+  invariant(post, `Post not found: ${params.slug}`);
+
+  return json<LoaderData>({ post });
 };
 
 const PostSlug = () => {
-  const { post } = useLoaderData();
+  const { post } = useLoaderData<LoaderData>();
 
   return (
     <main className="mx-auto mt-3 max-w-4xl">
