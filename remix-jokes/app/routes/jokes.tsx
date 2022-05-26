@@ -56,7 +56,7 @@ function JokesRoute() {
 						<p>Here are a few more jokes to check out:</p>
 						<ul>
 							{jokeListItems.map((joke) => (
-								<li key={joke.id}>
+								<li key={`${joke.id}-${joke.name}`}>
 									<Link to={joke.id}>{joke.name}</Link>
 								</li>
 							))}
