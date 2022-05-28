@@ -7,31 +7,58 @@ import {
 	ScrollRestoration,
 } from "@remix-run/react";
 import stylesUrl from "~/styles/app.css";
+import Layout from "./layouts";
 
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import type {
+	ErrorBoundaryComponent,
+	LinksFunction,
+	MetaFunction,
+} from "@remix-run/node";
+
+interface DocumentProps {
+	children: React.ReactNode;
+}
 
 export const meta: MetaFunction = () => ({
 	charset: "utf-8",
-	title: "New Remix App",
+	title: "Medusa Remix StoreFront",
 	viewport: "width=device-width,initial-scale=1",
 });
 
 const links: LinksFunction = () => [{ rel: "stylesheet", href: stylesUrl }];
+const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => (
+	<Document>
+		<Layout>
+			<div className="text-red-500">
+				<h1>Error</h1>
+				<p>{error.message}</p>
+			</div>
+		</Layout>
+	</Document>
+);
 
-export default function App() {
+function Document({ children }: DocumentProps) {
 	return (
 		<html lang="en">
 			<head>
 				<Meta />
 				<Links />
 			</head>
-			<body>
+			<body>{children}</body>
+		</html>
+	);
+}
+
+export default function App() {
+	return (
+		<Document>
+			<Layout>
 				<Outlet />
 				<ScrollRestoration />
 				<Scripts />
 				<LiveReload />
-			</body>
-		</html>
+			</Layout>
+		</Document>
 	);
 }
-export { links };
+export { links, ErrorBoundary };
