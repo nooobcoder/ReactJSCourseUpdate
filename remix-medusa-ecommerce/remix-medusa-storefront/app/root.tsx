@@ -37,17 +37,15 @@ const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => (
 	</Document>
 );
 
-function Document({ children }: DocumentProps) {
-	return (
-		<html lang="en">
-			<head>
-				<Meta />
-				<Links />
-			</head>
-			<body>{children}</body>
-		</html>
-	);
-}
+const Document: React.FC<DocumentProps> = ({ children }: DocumentProps) => (
+	<html lang="en">
+		<head>
+			<Meta />
+			<Links />
+		</head>
+		<body>{children}</body>
+	</html>
+);
 
 export default function App() {
 	return (
