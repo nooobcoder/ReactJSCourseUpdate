@@ -1,7 +1,8 @@
 import { json, redirect } from "@remix-run/node";
-import { useActionData, Link, useCatch } from "@remix-run/react";
+import { useActionData, Link, useCatch, useTransition } from "@remix-run/react";
 import { db } from "~/utils/db.server";
 import { getUserId, requireUserId } from "~/utils/session.server";
+import JokeDisplay from "~/components/joke";
 
 import type { Joke } from "@prisma/client";
 import type { ActionFunction, LoaderFunction } from "@remix-run/node";
@@ -88,6 +89,26 @@ const CatchBoundary = () => {
 
 function NewJoke() {
 	const actionData = useActionData<ActionData>();
+	const transition = useTransition();
+
+	if (transition.submission) {
+		const name = transition.submission.formData.get("name");
+		const content = transition.submission.formData.get("content");
+		if (
+			typeof name === "string" &&
+			typeof content === "string" &&
+			!validateJokeContent(content) &&
+			!validateJokeName(name)
+		) {
+			return (
+				<JokeDisplay
+					joke={{ name, content }}
+					isOwner={true}
+					canDelete={false}
+				/>
+			);
+		}
+	}
 
 	return (
 		/* Form with name and content fields */
@@ -101,23 +122,14 @@ function NewJoke() {
 							type="text"
 							defaultValue={actionData?.fields?.name}
 							name="name"
-							aria-invalid={
-								Boolean(actionData?.fieldErrors?.name) ||
-								undefined
-							}
+							aria-invalid={Boolean(actionData?.fieldErrors?.name) || undefined}
 							aria-errormessage={
-								actionData?.fieldErrors?.name
-									? "name-error"
-									: undefined
+								actionData?.fieldErrors?.name ? "name-error" : undefined
 							}
 						/>
 					</label>
 					{actionData?.fieldErrors?.name ? (
-						<p
-							className="form-validation-error"
-							role="alert"
-							id="name-error"
-						>
+						<p className="form-validation-error" role="alert" id="name-error">
 							{actionData.fieldErrors.name}
 						</p>
 					) : null}
@@ -129,13 +141,10 @@ function NewJoke() {
 							defaultValue={actionData?.fields?.content}
 							name="content"
 							aria-invalid={
-								Boolean(actionData?.fieldErrors?.content) ||
-								undefined
+								Boolean(actionData?.fieldErrors?.content) || undefined
 							}
 							aria-errormessage={
-								actionData?.fieldErrors?.content
-									? "content-error"
-									: undefined
+								actionData?.fieldErrors?.content ? "content-error" : undefined
 							}
 						/>
 					</label>

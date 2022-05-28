@@ -1,9 +1,9 @@
 import type { LinksFunction, MetaFunction } from "@remix-run/node";
 import { Links, LiveReload, Meta, Outlet, useCatch } from "@remix-run/react";
 
-import globalStylesUrl from "./styles/global.css";
-import globalMediumStylesUrl from "./styles/global-medium.css";
 import globalLargeStylesUrl from "./styles/global-large.css";
+import globalMediumStylesUrl from "./styles/global-medium.css";
+import globalStylesUrl from "./styles/global.css";
 
 const meta: MetaFunction = () => {
 	const description = `Learn Remix and laugh at the same time!`;
@@ -59,14 +59,18 @@ function Document({
 	);
 }
 
-const ErrorBoundary = ({ error }: { error: Error }) => (
-	<Document title="Uh-oh!">
-		<div className="error-container">
-			<h1>App Error</h1>
-			<pre>{error.message}</pre>
-		</div>
-	</Document>
-);
+const ErrorBoundary = ({ error }: { error: Error }) => {
+	console.error(error);
+
+	return (
+		<Document title="Uh-oh!">
+			<div className="error-container">
+				<h1>App Error</h1>
+				<pre>{error.message}</pre>
+			</div>
+		</Document>
+	);
+};
 
 const CatchBoundary = () => {
 	const caught = useCatch();

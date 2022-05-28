@@ -2,6 +2,7 @@ import { json } from "@remix-run/node";
 import { useLoaderData, Link, useParams, useCatch } from "@remix-run/react";
 import { db } from "~/utils/db.server";
 import { getUserId } from "~/utils/session.server";
+import JokeDisplay from "~/components/joke";
 
 import type { Joke } from "@prisma/client";
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
@@ -77,21 +78,7 @@ const CatchBoundary = () => {
 export default function JokeRoute() {
 	const { joke, isOwner } = useLoaderData<LoaderData>();
 
-	return (
-		<div>
-			<h2>{joke.name}</h2>
-			<p>{joke.content}</p>
-			<Link to=".">{joke.name} Permalink</Link>
-			{isOwner ? (
-				<form method="post">
-					<input type="hidden" name="_method" value="delete" />
-					<button type="submit" className="button">
-						Delete
-					</button>
-				</form>
-			) : null}
-		</div>
-	);
+	return <JokeDisplay joke={joke} isOwner={isOwner} />;
 }
 
 export { loader, meta, ErrorBoundary, CatchBoundary };
