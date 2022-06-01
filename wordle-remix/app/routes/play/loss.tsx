@@ -1,16 +1,21 @@
-import { useNavigate } from "@remix-run/react";
 import { useCallback } from "react";
-import { json } from "@remix-run/node";
+import { useLoaderData, useNavigate } from "@remix-run/react";
+import { json, redirect } from "@remix-run/node";
 
+import { Button } from "~/components/Button";
 import { Dialog } from "~/components/Dialog";
 import { Mark } from "~/components/Mark";
-import { Button } from "~/components/Button";
-import { getSession, destroySession, commitSession } from "~/utils/sessions";
+import {
+	commitSession,
+	destroySession,
+	getSession,
+	requireSessionStatus,
+} from "~/utils/sessions";
 
-import type { LoaderFunction } from "@remix-run/node";
+import type { LoaderFunction, ActionFunction } from "@remix-run/node";
 
-const loader: LoaderFunction = async ({ request: { headers } }) => {
-	const session = await getSession(headers.get("Cookie"));
+export const loader: LoaderFunction = async ({ request }) => {
+	const session = await requireSessionStatus(request, "loss");
 
 	return json(
 		{
@@ -24,8 +29,16 @@ const loader: LoaderFunction = async ({ request: { headers } }) => {
 	);
 };
 
-function Loss() {
-	const word = "index";
+export const action: ActionFunction = async ({ request }) => {
+	const session = await getSession(request.headers.get("Cookie"));
+
+	return redirect("/play", {
+		headers: { "Set-Cookie": await destroySession(session) },
+	});
+};
+
+export default function Loss() {
+	const { word } = useLoaderData<{ word: string }>();
 	const navigate = useNavigate();
 	const onClose = useCallback(() => navigate("/play"), []);
 
@@ -39,17 +52,10 @@ function Loss() {
 					for. Typically you wouldn't be able to play again. Here you
 					can actually try again!
 				</p>
-				<Button
-					data-bs-toggle="tooltip"
-					data-bs-placement="top"
-					title={`/play`}
-				>
-					Play again
-				</Button>
+				<form method="post">
+					<Button type="submit">Play again</Button>
+				</form>
 			</div>
 		</Dialog>
 	);
 }
-
-export default Loss;
-export { loader };

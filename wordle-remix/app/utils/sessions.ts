@@ -1,4 +1,6 @@
-import { createCookieSessionStorage } from "@remix-run/node";
+import { createCookieSessionStorage, redirect } from "@remix-run/node";
+
+import type { GameStatus } from "~/types";
 
 const { getSession, commitSession, destroySession } =
 	createCookieSessionStorage({
@@ -13,4 +15,18 @@ const { getSession, commitSession, destroySession } =
 		},
 	});
 
-export { getSession, commitSession, destroySession };
+const requireSessionStatus = async (
+	request: Request,
+	requiredStatus: GameStatus
+) => {
+	const session = await getSession(request.headers.get("Cookie"));
+	const status = session.get("status");
+
+	if (status !== requiredStatus) {
+		throw new redirect("/play");
+	}
+
+	return session;
+};
+
+export { getSession, commitSession, destroySession, requireSessionStatus };

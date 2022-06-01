@@ -1,13 +1,13 @@
-import { useNavigate, useLoaderData } from "@remix-run/react";
+import { json, redirect } from "@remix-run/node";
+import { useLoaderData, useNavigate } from "@remix-run/react";
 import { useCallback } from "react";
-import { json } from "@remix-run/node";
 
 import { Button } from "~/components/Button";
 import { Dialog } from "~/components/Dialog";
 import { Mark } from "~/components/Mark";
-import { commitSession, getSession } from "~/utils/sessions";
+import { commitSession, destroySession, getSession } from "~/utils/sessions";
 
-import type { LoaderFunction } from "@remix-run/node";
+import type { ActionFunction, LoaderFunction } from "@remix-run/node";
 
 const loader: LoaderFunction = async ({ request: { headers } }) => {
 	const session = await getSession(headers.get("Cookie"));
@@ -20,6 +20,16 @@ const loader: LoaderFunction = async ({ request: { headers } }) => {
 			},
 		}
 	);
+};
+
+const action: ActionFunction = async ({ request: { headers } }) => {
+	const session = await getSession(headers.get("Cookie"));
+
+	return redirect("/play", {
+		headers: {
+			"Set-Cookie": await destroySession(session),
+		},
+	});
 };
 
 function Win() {
@@ -48,4 +58,4 @@ function Win() {
 }
 
 export default Win;
-export { loader };
+export { loader, action };
