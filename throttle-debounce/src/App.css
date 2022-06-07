@@ -1,0 +1,29 @@
+body {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+h1 {
+	text-align: center;
+	margin: 0.5rem 0;
+}
+.l-scroll {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 380px;
+	height: 200px;
+	margin-top: 0.5rem;
+}
+.scroll-content {
+	width: 100%;
+	background-color: bisque;
+	padding: 0 1rem;
+}
+.l-scroll::-webkit-scrollbar {
+	width: 10px;
+	height: 8px;
+	background-color: darkturquoise;
+}
+.l-scroll::-webkit-scrollbar-thumb {
+	background-color: blueviolet;
+}
