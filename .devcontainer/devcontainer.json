@@ -1,6 +1,6 @@
 {
   "name": "Tailscale-enabled Codespace",
-  "dockerFile": ".codespace.Dockerfile",
+  "dockerFile": "Dockerfile",
   "context": "..",
   "runArgs": [
     "--cap-add=NET_ADMIN",
