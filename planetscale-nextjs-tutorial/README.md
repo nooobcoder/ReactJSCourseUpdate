@@ -1,8 +1,10 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cd9c9e88-b353-4548-a00b-641fefafe3f6/deploy-status)](https://app.netlify.com/sites/planetscale-nextjs-tutorial/deploys)
 
+> 🔗 Deployment URL: https://planetscale-nextjs-tutorial.netlify.app/
+
 # Instructions
 
-```
+```bash
 pnpm i
 npx prisma db push
 pnpm dev
