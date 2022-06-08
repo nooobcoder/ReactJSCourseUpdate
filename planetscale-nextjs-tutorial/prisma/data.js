@@ -1,6 +1,7 @@
 const { Prisma } = require('@prisma/client');
 
 const categories = [
+
   {
     name: 'Hats',
     description: 'Things you can wear on your head',
@@ -13,9 +14,20 @@ const categories = [
     name: 'Shirts',
     description: 'Things you wear on the top half of your body',
   },
+  {
+    name: 'Pen',
+    description: 'This is a pen',
+  },
 ];
 
 const products = [
+  {
+    name: 'Cool Pen.',
+    description: 'A nice pen',
+    price: new Prisma.Decimal(3.95),
+    image: '/images/pen.jpg',
+    category_id: 4,
+  },
   {
     name: 'Cool helmet.',
     description: 'A nice helmet to wear on your head',
