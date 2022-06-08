@@ -1,6 +1,5 @@
 image:
     file: .gitpod.Dockerfile
-experimentalNetwork: true
 tasks:
     - name: tailscaled
       command: |
