@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'spacemono': ['Space Mono', 'consolas', 'monospace', 'sans-serif'],
+        'spacemono': ['Space Mono', 'Dank Mono', 'consolas', 'monospace', 'sans-serif']
       },
     },
   },

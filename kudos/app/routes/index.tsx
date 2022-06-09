@@ -1,3 +1,5 @@
+import { redirect } from "@remix-run/node";
+
 import { requireUserId } from "~/utils/auth.server";
 
 import type { LoaderFunction } from "@remix-run/node";
@@ -14,7 +16,7 @@ export function ErrorBoundary({ error }: any) {
 
 const loader: LoaderFunction = async ({ request }) => {
 	await requireUserId(request);
-	return null;
+	return redirect(`./home`);
 };
 
 export default function Index() {

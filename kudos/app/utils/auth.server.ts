@@ -116,4 +116,4 @@ const getUser = async (request: Request) => {
 	}
 };
 
-export { createUserSession, register, login, requireUserId, getUser };
+export { createUserSession, register, login, logout, requireUserId, getUser };
