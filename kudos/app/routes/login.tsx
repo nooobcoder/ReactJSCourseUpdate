@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { json } from "@remix-run/node";
+import { useState, useEffect, useRef } from "react";
+import { json, redirect } from "@remix-run/node";
 import { useActionData } from "@remix-run/react";
 
 import { FormField } from "~/components/FormField";
@@ -9,9 +9,13 @@ import {
 	validatePassword,
 	validateName,
 } from "~/utils/validators.server";
-import { login, register } from "~/utils/auth.server";
+import { login, register, getUser } from "~/utils/auth.server";
 
-import type { ActionFunction } from "@remix-run/node";
+import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+
+const loader: LoaderFunction = async ({ request }) => {
+	return (await getUser(request)) ? redirect(`/`) : null;
+};
 
 const action: ActionFunction = async ({ request }) => {
 	const form = await request.formData();
@@ -77,6 +81,7 @@ const action: ActionFunction = async ({ request }) => {
 
 export default function Login() {
 	const actionData = useActionData();
+	const firstLoad = useRef(true);
 	const [errors, setErrors] = useState(actionData?.errors || {});
 	const [formError, setFormError] = useState(actionData?.error || "");
 	const [action, setAction] = useState("login");
@@ -86,6 +91,33 @@ export default function Login() {
 		firstName: actionData?.fields?.lastName || "",
 		lastName: actionData?.fields?.firstName || "",
 	});
+
+	/* 
+		If the user is shown an error and switches forms, you will need to clear out the form and any errors being shown. Use these effects to achieve this:
+	*/
+	useEffect(() => {
+		if (!firstLoad.current) {
+			const newState = {
+				email: "",
+				password: "",
+				firstName: "",
+				lastName: "",
+			};
+			setErrors(newState);
+			setFormError("");
+			setFormData(newState);
+		}
+	}, [action]);
+
+	useEffect(() => {
+		if (!firstLoad.current) {
+			setFormError("");
+		}
+	}, [formData]);
+
+	useEffect(() => {
+		firstLoad.current = false;
+	}, []);
 
 	// Updates the form data when an input changes
 	const handleInputChange = (
@@ -166,4 +198,4 @@ export default function Login() {
 	);
 }
 
-export { action };
+export { action, loader };

@@ -1,3 +1,7 @@
+import { requireUserId } from "~/utils/auth.server";
+
+import type { LoaderFunction } from "@remix-run/node";
+
 export function ErrorBoundary({ error }: any) {
 	console.log(error);
 	return (
@@ -7,6 +11,11 @@ export function ErrorBoundary({ error }: any) {
 		</div>
 	);
 }
+
+const loader: LoaderFunction = async ({ request }) => {
+	await requireUserId(request);
+	return null;
+};
 
 export default function Index() {
 	// const todos = useLoaderData();
@@ -18,3 +27,5 @@ export default function Index() {
 		</div>
 	);
 }
+
+export { loader };
