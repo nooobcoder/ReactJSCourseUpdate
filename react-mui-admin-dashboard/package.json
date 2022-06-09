@@ -1,0 +1,29 @@
+{
+	"name": "admin-dashboard-mui",
+	"private": true,
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "vite --host 0.0.0.0 --port 4848",
+		"build": "vite build",
+		"preview": "vite preview --host 0.0.0.0 --port 5858"
+	},
+	"dependencies": {
+		"@emotion/react": "^11.9.0",
+		"@emotion/styled": "^11.8.1",
+		"@material-ui/core": "^4.12.4",
+		"@material-ui/icons": "^4.11.3",
+		"@mui/icons-material": "^5.6.2",
+		"@mui/material": "^5.7.0",
+		"@mui/x-data-grid": "^5.12.0",
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+		"react-router-dom": "^6.3.0",
+		"recharts": "^2.1.10"
+	},
+	"devDependencies": {
+		"@types/react": "^18.0.0",
+		"@types/react-dom": "^18.0.0",
+		"@vitejs/plugin-react": "^1.3.0",
+		"vite": "^2.9.9"
+	}
+}

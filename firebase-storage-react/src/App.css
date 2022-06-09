@@ -17,6 +17,14 @@
 	width: 100%;
 }
 
+.app__progress {
+	width: 100%;
+	height: 10px;
+	background-color: #4caf50;
+	position: relative;
+	margin-top: 10px;
+}
+
 .app {
 	height: 100vh;
 	display: flex;
