@@ -6,7 +6,7 @@
 	"sideEffects": false,
 	"scripts": {
 		"build": "npm run build:css && remix build",
-		"build:css": "tailwindcss -m -i ./app/styles/app.css -o app/styles/app.css",
+		"build:css": "tailwindcss -m -i ./app/styles/app.css -o app/styles/output.css",
 		"db:seed": "npx prisma db seed",
 		"db:setup": "npx prisma db push",
 		"db:generate": "npx prisma generate",
