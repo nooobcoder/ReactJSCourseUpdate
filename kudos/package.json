@@ -10,8 +10,9 @@
 		"db:seed": "npx prisma db seed",
 		"db:setup": "npx prisma db push",
 		"db:generate": "npx prisma generate",
-		"dev": "concurrently \"npm run dev:css\" \"remix dev\"",
+		"dev": "concurrently \"npm run dev:css\" \"remix dev\" \"npm run dev:prisma\"",
 		"dev:css": "tailwindcss -w -i ./app/styles/app.css -o app/styles/output.css",
+		"dev:prisma":"prisma studio -p 5858",
 		"start": "PORT=4848 remix-serve build",
 		"test": "cypress open"
 	},
