@@ -26,6 +26,10 @@ const storage = createCookieSessionStorage({
 	},
 });
 
+const getUserSession = (request: Request) => {
+	return storage.getSession(request.headers.get("Cookie"));
+};
+
 const createUserSession = async (userId: string, redirectTo: string = `/`) => {
 	const session = await storage.getSession();
 	session.set(`userId`, userId);
@@ -80,10 +84,6 @@ const getUserId = async (request: Request) => {
 	const userId = session.get("userId");
 	if (!userId || typeof userId !== "string") return null;
 	return userId;
-};
-
-const getUserSession = (request: Request) => {
-	return storage.getSession(request.headers.get("Cookie"));
 };
 
 const requireUserId = async (

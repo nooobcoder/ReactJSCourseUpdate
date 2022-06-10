@@ -1,6 +1,7 @@
-import { User, Kudo } from "@prisma/client";
-import { UserCircle } from "./UserCircle";
 import { emojiMap } from "~/utils/constants";
+import { UserCircle } from "./UserCircle";
+
+import type { Kudo, User } from "@prisma/client";
 
 interface KudoWithRecipient extends Kudo {
 	recipient: User;
@@ -8,7 +9,7 @@ interface KudoWithRecipient extends Kudo {
 
 export function RecentBar({ kudos }: { kudos: KudoWithRecipient[] }) {
 	return (
-		<div className="w-1/5 border-l-4 border-l-yellow-300 flex flex-col items-center">
+		<div className="w-1/5 border-l-4 border-l-yellow-300 flex flex-col overflow-hidden items-center p-2 bg-sky-800 ">
 			<h2 className="text-xl text-yellow-300 font-semibold my-6">
 				Recent Kudos
 			</h2>

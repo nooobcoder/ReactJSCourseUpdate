@@ -14,7 +14,7 @@ const Kudo = ({
 		<div
 			className={`flex ${
 				backgroundColorMap[kudo.style?.backgroundColor || "RED"]
-			} p-4 rounded-xl w-full gap-x-2 relative hover:shadow-lg`}
+			} p-4 rounded-xl w-full gap-x-2 relative hover:shadow-lg font-mono`}
 		>
 			<div>
 				<UserCircle profile={profile} className="h-16 w-16" />

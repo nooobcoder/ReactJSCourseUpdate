@@ -26,8 +26,6 @@ const action: ActionFunction = async ({ request }) => {
 	let firstName = form.get("firstName");
 	let lastName = form.get("lastName");
 
-	console.log(action, email, password);
-
 	if (
 		typeof action !== "string" ||
 		typeof email !== "string" ||

@@ -1,8 +1,15 @@
-import { useNavigate, useSearchParams } from "@remix-run/react";
+import { useNavigate, useSearchParams, Link } from "@remix-run/react";
 import { sortOptions } from "~/utils/constants";
 import { SelectBox } from "~/components/SelectBox";
 
-const SearchBar = () => {
+import type { Profile } from "@prisma/client";
+import { UserCircle } from "./UserCircle";
+
+interface Props {
+	profile: Profile;
+}
+
+const SearchBar = ({ profile }: Props) => {
 	const navigate = useNavigate();
 	let [searchParams] = useSearchParams();
 
@@ -51,6 +58,12 @@ const SearchBar = () => {
 				</button>
 			)}
 			<div className="flex-1" />
+			<Link to="profile">
+				<UserCircle
+					className="h-14 w-14 transition duration-300 ease-in-out hover:scale-110 hover:border-2 hover:border-yellow-300"
+					profile={profile}
+				/>
+			</Link>
 		</form>
 	);
 };

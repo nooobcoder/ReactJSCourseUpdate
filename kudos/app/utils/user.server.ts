@@ -1,3 +1,4 @@
+import { Profile } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
 import { prisma } from "./prisma.server";
@@ -35,4 +36,20 @@ const getOtherUsers = async (userId: string) => {
 const getUserById = async (userId: string) =>
 	await prisma.user.findUnique({ where: { id: userId } });
 
-export { createUser, getOtherUsers, getUserById };
+const updateUser = async (userId: string, profile: Partial<Profile>) => {
+	await prisma.user.update({
+		where: {
+			id: userId,
+		},
+		data: {
+			profile: {
+				update: profile,
+			},
+		},
+	});
+};
+
+const deleteUser = async (id: string) =>
+	await prisma.user.delete({ where: { id } });
+
+export { createUser, getOtherUsers, getUserById, updateUser, deleteUser };
