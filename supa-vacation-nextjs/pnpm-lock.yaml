@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@headlessui/react': ^1.4.3
   '@heroicons/react': ^1.0.5
+  '@prisma/client': ^3.15.1
   '@tailwindcss/aspect-ratio': ^0.4.0
   '@tailwindcss/forms': ^0.4.0
   autoprefixer: ^10.4.2
@@ -34,6 +35,7 @@ dependencies:
   yup: 0.32.11
 
 devDependencies:
+  '@prisma/client': 3.15.1_prisma@3.15.1
   '@tailwindcss/aspect-ratio': 0.4.0_tailwindcss@3.1.2
   autoprefixer: 10.4.7_postcss@8.4.14
   eslint: 8.8.0
@@ -223,6 +225,24 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
+
+  /@prisma/client/3.15.1_prisma@3.15.1:
+    resolution: {integrity: sha512-Lsk7oupvO9g99mrIs07iE6BIMouHs46Yq/YY8itTsUQNKfecsPuZvVYvcKci0pqRQ0neOpvIvoA/ouZmIMBCrQ==}
+    engines: {node: '>=12.6'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e
+      prisma: 3.15.1
+    dev: true
+
+  /@prisma/engines-version/3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e:
+    resolution: {integrity: sha512-e3k2Vd606efd1ZYy2NQKkT4C/pn31nehyLhVug6To/q8JT8FpiMrDy7zmm3KLF0L98NOQQcutaVtAPhzKhzn9w==}
+    dev: true
 
   /@prisma/engines/3.15.1-1.461d6a05159055555eb7dfb337c9fb271cbd4d7e:
     resolution: {integrity: sha512-NHlojO1DFTsSi3FtEleL9QWXeSF/UjhCW0fgpi7bumnNZ4wj/eQ+BJJ5n2pgoOliTOGv9nX2qXvmHap7rJMNmg==}
