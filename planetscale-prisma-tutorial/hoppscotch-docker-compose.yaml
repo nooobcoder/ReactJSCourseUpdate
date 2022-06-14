@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  web:
+    image: hoppscotch/hoppscotch
+    volumes:
+      - "./hoppscotch/.hoppscotch:/app/.hoppscotch"
+      - "./hoppscotch/assets:/app/assets"
+      - "./hoppscotch/directives:/app/directives"
+      - "./hoppscotch/layouts:/app/layouts"
+      - "./hoppscotch/middleware:/app/middleware"
+      - "./hoppscotch/pages:/app/pages"
+      - "./hoppscotch/plugins:/app/plugins"
+      - "./hoppscotch/static:/app/static"
+      - "./hoppscotch/store:/app/store"
+      - "./hoppscotch/components:/app/components"
+      - "./hoppscotch/helpers:/app/helpers"
+    ports:
+      - "7777:3000"
+    environment:
+      HOST: 127.0.0.1
+    command: "npm run dev"
