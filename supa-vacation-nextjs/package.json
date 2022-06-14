@@ -4,6 +4,10 @@
 	"scripts": {
 		"dev": "PORT=4848 next dev",
 		"prisma:studio": "prisma studio -p 5555",
+		"prisma:generate": "prisma generate",
+		"prisma:push": "prisma db push",
+		"prisma:migrate": "prisma migrate dev",
+		"env:pull": "dotenv-vault pull",
 		"build": "next build",
 		"start": "PORT=4848 next start",
 		"lint": "next lint"
