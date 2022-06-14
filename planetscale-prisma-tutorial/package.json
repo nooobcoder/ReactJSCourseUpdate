@@ -1,0 +1,25 @@
+{
+	"name": "planetscale-prisma-tutorial",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "run-p dev:*",
+		"dev:nextjs": "PORT=4848 next dev",
+		"dev:studio": "prisma studio --port 5555",
+		"dev:db-proxy": "pscale connect test-database draft --port 3309",
+		"build": "PORT=4848 next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"dependencies": {
+		"next": "12.1.6",
+		"prisma": "^3.15.1",
+		"react": "18.1.0",
+		"react-dom": "18.1.0"
+	},
+	"devDependencies": {
+		"eslint": "8.17.0",
+		"eslint-config-next": "12.1.6",
+		"planetscale": "^2.1.0"
+	}
+}
