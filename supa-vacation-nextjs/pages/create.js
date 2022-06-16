@@ -13,7 +13,6 @@ const Create = () => {
       },
       body: JSON.stringify(data)
     })).json();
-    console.log(resp);
   };
 
   return (

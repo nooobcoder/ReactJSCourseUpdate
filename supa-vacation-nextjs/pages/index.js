@@ -22,7 +22,6 @@ export default function Home({ homes }) {
 
 export async function getServerSideProps() {
   const homes = await getAllHomes();
-  console.log(homes)
   return {
     props: {
       homes: JSON.parse(JSON.stringify(homes)),
