@@ -14,16 +14,18 @@ const prisma =
 
 if (process.env.NODE_ENV !== "production") global.prisma = prisma;
 
-const createHome = async () =>
+const createHome = async (
+	data = {
+		title: "Clean and modern apartment in downtown Providence, RI",
+		description: "Entire rental unit + free wifi",
+		price: 185,
+		guests: 4,
+		beds: 2,
+		baths: 1,
+	}
+) =>
 	await prisma.home.create({
-		data: {
-			title: "Clean and modern apartment in downtown Providence, RI",
-			description: "Entire rental unit + free wifi",
-			price: 185,
-			guests: 4,
-			beds: 2,
-			baths: 1,
-		},
+		data,
 	});
 
 const updateHome = async () =>
@@ -43,6 +45,8 @@ const deleteHome = async () =>
 		},
 	});
 
-const getAllHomes = async () => await prisma.home.findMany({});
+const getAllHomes = async (args = {}) => await prisma.home.findMany(args);
 
-export { createHome, updateHome, deleteHome, getAllHomes, prisma };
+const getHomeById = async (id=`1`) => await prisma.home.findUnique({where:{id}});
+
+export { createHome, updateHome, deleteHome, getAllHomes,getHomeById, prisma };
