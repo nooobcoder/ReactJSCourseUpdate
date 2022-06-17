@@ -1,12 +1,16 @@
-import { createClient } from "@supabase/supabase-js"
-import { nanoid } from "nanoid";
+import { supabase } from "utils/supabase";
+import { nanoid } from 'nanoid';
+import { decode } from 'base64-arraybuffer';
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
-);
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
+  },
+};
 
-const handler = async (req, res) => {
+export default async function handler(req, res) {
   // Upload image to Supabase
   if (req.method === 'POST') {
     let { image } = req.body;
@@ -23,6 +27,7 @@ const handler = async (req, res) => {
         return res.status(500).json({ message: 'Image data not valid' });
       }
 
+      // Upload image
       const fileName = nanoid();
       const ext = contentType.split('/')[1];
       const path = `${fileName}.${ext}`;
@@ -55,5 +60,3 @@ const handler = async (req, res) => {
       .json({ message: `HTTP method ${req.method} is not supported.` });
   }
 }
-
-export default handler;
