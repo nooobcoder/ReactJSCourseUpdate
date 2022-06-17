@@ -1,9 +1,10 @@
-import Layout from '@/components/Layout';
 import Grid from '@/components/Grid';
+import Layout from '@/components/Layout';
 
-import homes from 'data.json';
+// import homes from 'data.json';
+import { getAllHomes } from '../utils/dbOps.ts';
 
-export default function Home() {
+export default function Home({ homes }) {
   return (
     <Layout>
       <h1 className="text-xl font-medium text-gray-800">
@@ -17,4 +18,13 @@ export default function Home() {
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const homes = await getAllHomes();
+  return {
+    props: {
+      homes: JSON.parse(JSON.stringify(homes)),
+    },
+  };
 }
