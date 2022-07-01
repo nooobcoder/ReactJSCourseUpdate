@@ -1,24 +1,70 @@
 {
-  "name": "grocery-list-mern",
-  "version": "0.1.0",
+  "name": "typescript-nextjs-starter",
+  "description": "A TypeScript starter for Next.js that includes all you need to build amazing projects",
+  "version": "1.0.0",
   "private": true,
+  "author": "João Pedro Schmitz <hey@joaopedro.dev> (@jpedroschmitz)",
+  "license": "MIT",
+  "keywords": [
+    "nextjs",
+    "starter",
+    "typescript"
+  ],
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "type-check": "tsc",
+    "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
+    "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
+    "commit": "cz"
+  },
+  "lint-staged": {
+    "./src/**/*.{ts,js,jsx,tsx}": [
+      "eslint --ignore-path .gitignore --fix",
+      "prettier --ignore-path .gitignore --write"
+    ]
   },
   "dependencies": {
-    "next": "12.2.0",
+    "@fontsource/poppins": "4.5.8",
+    "@prisma/client": "4.0.0",
+    "@trpc/client": "9.25.3",
+    "@trpc/next": "9.25.3",
+    "@trpc/react": "9.25.3",
+    "@trpc/server": "9.25.3",
+    "next": "12.1.6",
+    "prisma": "4.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-query": "3.39.1",
+    "zod": "3.17.3"
   },
   "devDependencies": {
-    "@types/node": "18.0.0",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
+    "@types/node": "16.11.41",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
+    "@typescript-eslint/eslint-plugin": "5.30.0",
+    "@typescript-eslint/parser": "5.30.0",
+    "autoprefixer": "10.4.7",
+    "commitizen": "4.2.4",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "8.18.0",
-    "eslint-config-next": "12.2.0",
+    "eslint-config-next": "12.1.6",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-import-resolver-typescript": "2.7.1",
+    "eslint-plugin-prettier": "4.0.0",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "postcss": "8.4.14",
+    "prettier": "2.7.1",
+    "tailwindcss": "3.1.4",
     "typescript": "4.7.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
