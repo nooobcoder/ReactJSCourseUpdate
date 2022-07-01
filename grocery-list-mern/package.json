@@ -11,7 +11,7 @@
     "typescript"
   ],
   "scripts": {
-    "dev": "next",
+    "dev": "next --port 4848",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
