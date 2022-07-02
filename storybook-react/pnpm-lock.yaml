@@ -1,17 +1,17 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@storybook/addon-actions': ^6.5.7
-  '@storybook/addon-essentials': ^6.5.7
-  '@storybook/addon-interactions': ^6.5.7
-  '@storybook/addon-links': ^6.5.7
-  '@storybook/builder-webpack5': ^6.5.7
+  '@storybook/addon-actions': ^6.5.9
+  '@storybook/addon-essentials': ^6.5.9
+  '@storybook/addon-interactions': ^6.5.9
+  '@storybook/addon-links': ^6.5.9
+  '@storybook/builder-webpack5': ^6.5.9
   '@storybook/jest': ^0.0.10
-  '@storybook/manager-webpack5': ^6.5.7
-  '@storybook/node-logger': ^6.5.7
+  '@storybook/manager-webpack5': ^6.5.9
+  '@storybook/node-logger': ^6.5.9
   '@storybook/preset-create-react-app': ^4.1.2
-  '@storybook/react': ^6.5.7
-  '@storybook/testing-library': ^0.0.11
+  '@storybook/react': ^6.5.9
+  '@storybook/testing-library': ^0.0.13
   '@testing-library/jest-dom': ^5.14.1
   '@testing-library/react': ^13.0.0
   '@testing-library/user-event': ^13.2.1
@@ -22,6 +22,7 @@ specifiers:
   react: ^18.1.0
   react-dom: ^18.1.0
   react-scripts: 5.0.1
+  storybook-dark-mode: ^1.1.0
   web-vitals: ^2.1.0
   webpack: ^5.73.0
 
@@ -45,11 +46,12 @@ devDependencies:
   '@storybook/node-logger': 6.5.9
   '@storybook/preset-create-react-app': 4.1.2_3ugfc7mfdtzaiuayvb64wjihl4
   '@storybook/react': 6.5.9_77qya4viz6n5uqluzf7gq77ukm
-  '@storybook/testing-library': 0.0.11_biqbaboplfbrettd7655fr4n2y
+  '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
   babel-plugin-named-exports-order: 0.0.2
   msw: 0.42.3
   msw-storybook-addon: 1.6.3_gdk6n3i3z5hmlunk3pgjdscknm
   prop-types: 15.8.1
+  storybook-dark-mode: 1.1.0
   webpack: 5.73.0
 
 packages:
@@ -4625,8 +4627,8 @@ packages:
       - webpack-command
     dev: true
 
-  /@storybook/testing-library/0.0.11_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-8KbKx3s1e+uF3oWlPdyXRpZa6xtCsCHtXh1nCTisMA6P5YcSDaCg59NXIOVIQCAwKvjRomlqMJH8JL1WyOzeVg==}
+  /@storybook/testing-library/0.0.13_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-vRMeIGer4EjJkTgI8sQyK9W431ekPWYCWL//OmSDJ64IT3h7FnW7Xg6p+eqM3oII98/O5pcya5049GxnjaPtxw==}
     dependencies:
       '@storybook/client-logger': 6.5.9
       '@storybook/instrumenter': 6.5.9_biqbaboplfbrettd7655fr4n2y
@@ -9751,7 +9753,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       ansi-escapes: 4.3.2
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-width: 3.0.0
       external-editor: 3.1.0
@@ -11121,7 +11123,7 @@ packages:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
     engines: {node: '>=10'}
     dependencies:
-      chalk: 4.1.1
+      chalk: 4.1.2
       is-unicode-supported: 0.1.0
     dev: true
 
@@ -11948,7 +11950,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       bl: 4.1.0
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-spinners: 2.6.1
       is-interactive: 1.0.0
@@ -14590,6 +14592,19 @@ packages:
 
   /store2/2.13.2:
     resolution: {integrity: sha512-CMtO2Uneg3SAz/d6fZ/6qbqqQHi2ynq6/KzMD/26gTkiEShCcpqFfTHgOxsE0egAq6SX3FmN4CeSqn8BzXQkJg==}
+    dev: true
+
+  /storybook-dark-mode/1.1.0:
+    resolution: {integrity: sha512-F+hG02zYGBzxGTUonA1XDV/CtMYm3OjF38Tu1CIUN+w+8hwUrwLcOtgtLLw6VjSrZdJ/ECK+tjXdKTV4oZqAXw==}
+    peerDependencies:
+      '@storybook/addons': ^6.0.0
+      '@storybook/api': ^6.0.0
+      '@storybook/components': ^6.0.0
+      '@storybook/core-events': ^6.0.0
+      '@storybook/theming': ^6.0.0
+    dependencies:
+      fast-deep-equal: 3.1.3
+      memoizerific: 1.11.3
     dev: true
 
   /stream-browserify/2.0.2:
