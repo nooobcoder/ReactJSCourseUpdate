@@ -1,3 +1,5 @@
+[![dotenv-vault](https://badge.dotenv.org/works-with.svg?r=1)](https://www.dotenv.org/r/github.com/dotenv-org/dotenv-vault?r=1)
+
 Build a FullStack App with Next.js, Supabase & Prisma | The Modern Dev by
 [AlterClass.io](https://alterclass.io).
 
