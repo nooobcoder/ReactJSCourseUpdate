@@ -1,0 +1,26 @@
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .button {
+    @apply px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg active:scale-95 transform transition ease-out active:bg-gray-100;
+  }
+}
+
+@font-face {
+  font-family: 'Airbnb Cereal Light';
+  src: url('https://raw.githubusercontent.com/huuphongnguyen/cereal-airbnb-font/master/AirbnbCereal-Light.ttf');
+}
+
+::-moz-selection {
+  /* Code for Firefox */
+  color: black;
+  background: #ff5a5f;
+}
+
+::selection {
+  color: black;
+  background: #ff5a5f;
+}

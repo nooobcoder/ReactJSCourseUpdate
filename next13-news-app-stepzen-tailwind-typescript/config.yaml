@@ -1,0 +1,4 @@
+configurationset:
+  - configuration:
+      name: curl_import_config
+      authentication_d3157f7178: maroua::stepzen.net+1000::ee552f5cfe94cbd5e31e8945be79bc79f4526b8bdc3bd1099f261acbb13a0ffa

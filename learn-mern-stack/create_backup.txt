@@ -1,0 +1,6 @@
+# Export the database
+mongoexport -d dbname -o dbbackup --authenticationDatabase admin --username <username> --password <password>
+
+# Restore the database
+mongorestore -d database_name directory_backup_where_mongodb_tobe_restored
+

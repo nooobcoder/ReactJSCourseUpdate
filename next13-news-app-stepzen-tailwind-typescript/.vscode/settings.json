@@ -1,0 +1,8 @@
+{
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "css.customData": [".vscode/css_custom_data.json"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}

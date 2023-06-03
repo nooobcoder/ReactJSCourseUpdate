@@ -1,0 +1,1 @@
+{"version":3,"file":"Animal.js","sourceRoot":"","sources":["../../../src/graphql/resolvers/Animal.ts"],"names":[],"mappings":";;AAAA,IAAM,MAAM,GAAG;IACb,QAAQ,EAAE,UAAC,EAAiB,EAAE,CAAM,EAAE,EAAmB;YAA5C,QAAQ,cAAA;YAAmB,UAAU,gBAAA;QAAY,OAAA,UAAU,CAAC,IAAI,CAAC,UAAC,KAAU,IAAK,OAAA,KAAK,CAAC,EAAE,KAAK,QAAQ,EAArB,CAAqB,CAAC;IAAtD,CAAsD;CACrH,CAAC;AAEF,kBAAe,MAAM,CAAC"}

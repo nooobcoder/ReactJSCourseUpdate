@@ -1,0 +1,21 @@
+{
+	"compilerOptions": {
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "es5",
+    "noEmitOnError": true,
+    "moduleResolution": "node",
+		"outDir": "./dist/",
+		"sourceMap": true,
+    "lib": ["es6"],
+		"strict": true,
+		"noImplicitReturns": true,
+		"allowSyntheticDefaultImports": true,
+		"noImplicitAny": true,
+		"watch": true,
+		"allowJs": true
+	},
+  "lib": ["es2015"],
+  "exclude": ["node_modules"],
+	"include": ["./src/**/*"]
+}

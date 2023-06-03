@@ -1,0 +1,9 @@
+[[plugins]]
+package = "@netlify/plugin-nextjs"
+
+[build]
+command = "yarn next build"
+publish = ".next"
+
+[template.environment]
+PLANETSCALE_PRISMA_DATABASE_URL = "mysql://draftbranch_username:draft_branch_password@ap-south.connect.psdb.cloud/test-database?sslaccept=strict"

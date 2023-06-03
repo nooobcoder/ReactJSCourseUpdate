@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		@apply text-black bg-white dark:bg-gray-800 dark:text-white;
+	}
+
+	input {
+		@apply px-1 bg-gray-100 border-2 border-gray-400 rounded-md dark:bg-gray-700 dark:border-gray-700;
+	}
+
+	input:focus {
+		@apply bg-white border-blue-500 dark:bg-gray-800 dark:border-gray-700;
+	}
+
+	textarea {
+		@apply px-1 bg-gray-100 border-2 border-gray-400 rounded-md dark:bg-gray-700 dark:border-gray-700;
+	}
+
+	textarea:focus {
+		@apply bg-white border-blue-500 dark:bg-gray-800 dark:border-gray-700;
+	}
+
+	form {
+		@apply flex flex-col p-3 border-2 border-gray-500 rounded-lg;
+	}
+
+	form:focus-within {
+		@apply transition-colors duration-100 border-black;
+	}
+
+	.button-pink {
+		@apply px-3 py-2 rounded-lg dark:bg-fuchsia-600 bg-fuchsia-300;
+	}
+}
+
+body * {
+	@apply transition-colors duration-100;
+}
